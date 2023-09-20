@@ -227,6 +227,6 @@ INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia) VALUES
 ('Benjamin Clark', '3', '3','123c'),
 ('Lucas White', '3', '3','123c');
 --Administrador
-INSERT INTO empleados.empleado (nombre,rol,codigo_sucursal) VALUES
+INSERT INTO empleados.empleado (nombre,rol,codigo_sucursal,contrasenia) VALUES
 ('Virginia Azucena Loarca Elizalde','4','1','123d');
 
