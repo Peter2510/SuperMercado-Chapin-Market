@@ -56,8 +56,6 @@ CREATE TABLE productos.producto(
     descripcion TEXT NOT NULL,
     precio DECIMAL(7,2) NOT NULL,
     nombre VARCHAR(50) NOT NULL,
-    unidades INT NOT NULL,    
-    marca VARCHAR(50) NOT NULL,
     PRIMARY KEY(codigo)
 );
 
