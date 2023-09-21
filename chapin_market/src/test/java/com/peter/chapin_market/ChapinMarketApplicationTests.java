@@ -1,10 +1,10 @@
-package com.peter.apichapinmarket;
+package com.peter.chapin_market;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiChapinMarketApplicationTests {
+class ChapinMarketApplicationTests {
 
 	@Test
 	void contextLoads() {
