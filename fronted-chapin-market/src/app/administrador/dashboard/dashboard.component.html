@@ -1,0 +1,24 @@
+<div class="grid-container">
+  <h1 class="mat-h1 text-center">Administración</h1>
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile [colspan]="2" [rowspan]="1"> <!-- Primera tarjeta -->
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-empleados></app-empleados>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1"> <!-- Segunda tarjeta -->
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Título de la Tarjeta 2</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-reporte-ventas></app-reporte-ventas>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
