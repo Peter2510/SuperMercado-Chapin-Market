@@ -1,0 +1,21 @@
+<div class="container">
+  <h2 class="text-center">Empleados registrados</h2>
+  <table class="table table-striped">
+    <thead class="table table-dark">
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Rol</th>
+        <th>Sucursal</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let empleado of empleados">
+            <td>{{empleado.codigo}}</td>
+            <td>{{empleado.nombre}}</td>
+            <td>{{empleado.nombre_rol}}</td>
+            <td>{{empleado.nombre_sucursal}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>

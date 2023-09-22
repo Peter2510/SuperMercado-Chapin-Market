@@ -52,7 +52,7 @@ CREATE SCHEMA empleados;
 CREATE TABLE empleados.empleado(
     codigo SERIAL NOT NULL,
     nombre VARCHAR(120) NOT NULL,
-    rol VARCHAR(2) NOT NULL,
+    rol INT NOT NULL,
     codigo_sucursal SERIAL NOT NULL,
     contrasenia VARCHAR(50) NOT NULL,
     FOREIGN KEY (codigo_sucursal) REFERENCES sucursales.sucursal(codigo),
@@ -61,7 +61,7 @@ CREATE TABLE empleados.empleado(
 
 --Tabla caja
 CREATE TABLE sucursales.caja(
-    numero_caja VARCHAR(3) NOT NULL,
+    numero_caja INT NOT NULL,
     codigo_empleado SERIAL NOT NULL,
     FOREIGN KEY (codigo_empleado) REFERENCES empleados.empleado(codigo),
     PRIMARY KEY(numero_caja,codigo_empleado)
@@ -73,9 +73,9 @@ CREATE SCHEMA clientes;
 CREATE TABLE clientes.cliente(
     nombre VARCHAR(120) NOT NULL,
     puntos INT NOT NULL,
-    nit VARCHAR(12) NOT NULL,
+    nit INT NOT NULL,
     compras DECIMAL(11,2) NOT NULL,
-    tarjeta VARCHAR(2) NOT NULL,
+    tarjeta INT NOT NULL,
     PRIMARY KEY(nit)
 );
 
@@ -86,7 +86,7 @@ CREATE SCHEMA ventas;
 CREATE TABLE ventas.venta(
    codigo SERIAL NOT NULL,
    codigo_cajero SERIAL NOT NULL,
-   nit_cliente VARCHAR(12) NOT NULL,
+   nit_cliente INT NOT NULL,
    total_venta DECIMAL(11, 2) NOT NULL,
    fecha_venta DATE NOT NULL,  
    codigo_sucursal SERIAL NOT NULL,
@@ -106,6 +106,15 @@ CREATE TABLE ventas.detalle_venta(
    FOREIGN KEY (codigo_venta) REFERENCES ventas.venta(codigo),
    FOREIGN KEY (codigo_producto) REFERENCES productos.producto(codigo),
    PRIMARY KEY(codigo)
+);
+
+SET DATESTYLE TO 'European';
+--Tabla detalles venta
+CREATE TABLE ventas.descuento(
+   codigo_venta SERIAL NOT NULL,
+   total DECIMAL(10, 2) NOT NULL,
+   FOREIGN KEY (codigo_venta) REFERENCES ventas.venta(codigo),
+   PRIMARY KEY(codigo_venta)
 );
 
 --Crear Rol
@@ -165,6 +174,10 @@ GRANT INSERT ON TABLE ventas.detalle_venta TO adminDataBase;
 GRANT UPDATE ON TABLE ventas.detalle_venta TO adminDataBase;
 GRANT DELETE ON TABLE ventas.detalle_venta TO adminDataBase;
 
+GRANT SELECT ON TABLE ventas.descuento TO adminDataBase;
+GRANT INSERT ON TABLE ventas.descuento TO adminDataBase;
+GRANT UPDATE ON TABLE ventas.descuento TO adminDataBase;
+GRANT DELETE ON TABLE ventas.descuento TO adminDataBase;
 
 -- Otorgar permiso para utilizar la secuencia SERIAL
 GRANT USAGE ON SCHEMA sucursales TO adminDataBase;
@@ -173,10 +186,10 @@ GRANT USAGE ON SCHEMA productos TO adminDataBase;
 GRANT USAGE ON SCHEMA ventas TO adminDataBase;
 
 -- Creando usuario 
-CREATE USER db_user_chapin WITH PASSWORD '1chapinMarket2';
+CREATE USER admin_chapin WITH PASSWORD '1chapinMarket2';
 
 --Asignando Rol
-GRANT adminDataBase TO db_user_chapin;
+GRANT adminDataBase TO admin_chapin;
 
 
 --Insertando las sucursales
@@ -229,4 +242,3 @@ INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia) VALUES
 --Administrador
 INSERT INTO empleados.empleado (nombre,rol,codigo_sucursal,contrasenia) VALUES
 ('Virginia Azucena Loarca Elizalde','4','1','123d');
-

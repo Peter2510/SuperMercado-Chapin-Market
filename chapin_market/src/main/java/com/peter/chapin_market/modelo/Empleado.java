@@ -4,19 +4,14 @@ public class Empleado {
 
 	private int codigo;
 	private String nombre;
-	private int rol;
+	private int codigo_rol;
 	private int codigo_sucursal;
 	private String contrasenia;
+	private String nombre_sucursal;
+	private String nombre_rol;
 	
 	public Empleado() {
 
-	}
-	
-	public Empleado(String nombre, int rol, int codigo_sucursal, String contrasenia) {
-		this.nombre = nombre;
-		this.rol = rol;
-		this.codigo_sucursal = codigo_sucursal;
-		this.contrasenia = contrasenia;
 	}
 
 	public int getCodigo() {
@@ -35,12 +30,12 @@ public class Empleado {
 		this.nombre = nombre;
 	}
 
-	public int getRol() {
-		return rol;
+	public int getCodigo_rol() {
+		return codigo_rol;
 	}
 
-	public void setRol(int rol) {
-		this.rol = rol;
+	public void setCodigo_rol(int codigo_rol) {
+		this.codigo_rol = codigo_rol;
 	}
 
 	public int getCodigo_sucursal() {
@@ -58,6 +53,24 @@ public class Empleado {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
+
+	public String getNombre_sucursal() {
+		return nombre_sucursal;
+	}
+
+	public void setNombre_sucursal(String nombre_sucursal) {
+		this.nombre_sucursal = nombre_sucursal;
+	}
+
+	public String getNombre_rol() {
+		return nombre_rol;
+	}
+
+	public void setNombre_rol(String nombre_rol) {
+		this.nombre_rol = nombre_rol;
+	}
+
+	
 
 	
 }
