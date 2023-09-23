@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  codigo:String;
+  contrasenia:String;
+
+  login(){
+
+    
+  }
+
+
+
 }

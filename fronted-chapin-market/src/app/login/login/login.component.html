@@ -5,16 +5,16 @@
         <div class="card-body p-4 p-sm-5">
           <h1 class="card-title text-center mb-5 fw-bold">Ingreso al sistema</h1>
 
-          <form>
+          <form (ngSubmit)="login()">
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="floatingInput" placeholder="Código" required>
+              <input type="number" class="form-control" id="floatingInput" placeholder="Código" [(ngModel)]="codigo" [ngModelOptions]="{standalone: true}">
               <label for="floatingInput">Código</label>
+
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" required>
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [(ngModel)]="contrasenia" [ngModelOptions]="{standalone: true}">
               <label for="floatingPassword">Contraseña</label>
             </div>
-
             <div class="d-grid">
               <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Ingresar</button>
             </div>

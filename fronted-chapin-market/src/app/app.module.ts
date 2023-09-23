@@ -62,7 +62,7 @@ const routes: Route[] = [
     DescuentosFechasComponent,
     VentasFechasComponent,
     CrearEmpleadoComponent,
-
+    
   ],
   imports: [
     BrowserModule,
