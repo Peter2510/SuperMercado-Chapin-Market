@@ -1,6 +1,7 @@
 package com.peter.chapin_market.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,47 +25,27 @@ public class EmpleadoControlador {
 	private DataSource dataSource; // Inyecta el DataSource "configuracion de la base de datos"
 
 	@GetMapping(value = "/chapinMarket/empleados", produces = "application/json")
+	@Cacheable("empleados")
 	public ResponseEntity<List<Empleado>> obtenerTodosLosEmpleados() {
 
 		List<Empleado> empleados = new ArrayList<Empleado>();
+		Connection connection;
+		Statement statement;
+		ResultSet resultSet;
 
 		try {
 
-			Connection connection = dataSource.getConnection();
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT codigo,nombre,codigo_sucursal,rol FROM empleados.empleado");
+			connection = dataSource.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery("SELECT codigo,nombre,codigo_sucursal,rol,caja FROM empleados.empleado");
 
 			while (resultSet.next()) {
 				Empleado empleado = new Empleado();
 				empleado.setCodigo(resultSet.getInt("codigo"));
 				empleado.setNombre(resultSet.getString("nombre"));
 				empleado.setCodigo_sucursal(resultSet.getInt("codigo_sucursal"));
-				switch (empleado.getCodigo_sucursal()) {
-				case 1:
-					empleado.setNombre_sucursal("Central");
-					break;
-				case 2:
-					empleado.setNombre_sucursal("Norte");
-					break;
-				case 3:
-					empleado.setNombre_sucursal("Sur");
-					break;
-				}
 				empleado.setCodigo_rol(resultSet.getInt("rol"));
-				switch (empleado.getCodigo_rol()) {
-				case 1:
-					empleado.setNombre_rol("Cajero");
-					break;
-				case 2:
-					empleado.setNombre_rol("Bodega");
-					break;
-				case 3:
-					empleado.setNombre_rol("Inventario");
-					break;
-				case 4:
-					empleado.setNombre_rol("Administrador");
-					break;
-				}
+				empleado.setCaja(resultSet.getInt("caja"));
 
 				empleados.add(empleado);
 			}
@@ -79,6 +60,7 @@ public class EmpleadoControlador {
 			// Manejo de excepciones
 			System.out.print(e.getMessage());
 			return ResponseEntity.badRequest().build();
+		} finally {
 
 		}
 	}

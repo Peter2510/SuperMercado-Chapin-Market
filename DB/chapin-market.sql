@@ -1,4 +1,3 @@
-
 --Creando la base de datos
 CREATE DATABASE chapin_market;
 
@@ -55,16 +54,9 @@ CREATE TABLE empleados.empleado(
     rol INT NOT NULL,
     codigo_sucursal SERIAL NOT NULL,
     contrasenia VARCHAR(50) NOT NULL,
+    caja INT,
     FOREIGN KEY (codigo_sucursal) REFERENCES sucursales.sucursal(codigo),
     PRIMARY KEY(codigo)
-);
-
---Tabla caja
-CREATE TABLE sucursales.caja(
-    numero_caja INT NOT NULL,
-    codigo_empleado SERIAL NOT NULL,
-    FOREIGN KEY (codigo_empleado) REFERENCES empleados.empleado(codigo),
-    PRIMARY KEY(numero_caja,codigo_empleado)
 );
 
 --Esquema clientes
@@ -144,11 +136,6 @@ GRANT INSERT ON TABLE sucursales.bodega TO adminDataBase;
 GRANT UPDATE ON TABLE sucursales.bodega TO adminDataBase;
 GRANT DELETE ON TABLE sucursales.bodega TO adminDataBase;
 
-GRANT SELECT ON TABLE sucursales.caja TO adminDataBase;
-GRANT INSERT ON TABLE sucursales.caja TO adminDataBase;
-GRANT UPDATE ON TABLE sucursales.caja TO adminDataBase;
-GRANT DELETE ON TABLE sucursales.caja TO adminDataBase;
-
 GRANT SELECT ON TABLE clientes.cliente TO adminDataBase;
 GRANT INSERT ON TABLE clientes.cliente TO adminDataBase;
 GRANT UPDATE ON TABLE clientes.cliente TO adminDataBase;
@@ -199,26 +186,26 @@ INSERT INTO sucursales.sucursal (nombre) VALUES
 ('Sur');
 
 --Insertando cajeros
-INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia) VALUES
+INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia,caja) VALUES
 --cajeros
-('Luis Alberto Villatoro Cano','1','1','123a'),
-('Jose Carlos Lopez Mainz','1','1','123a'),
-('Olga Estela Siguenza Lopez','1','1','123a'),
-('Herson Daniel Hernandez Dante','1','1','123a'),
-('Jessie Torres Marcos','1','1','123a'),
-('Marta Patricia Ortega Arcos','1','1','123a'),
-('Edgar Guillermo Lara Valencia','1','2','123a'),
-('Monica Karina Tovar Solorzano','1','2','123a'),
-('Jose Andres Cardenas Molina','1','2','123a'),
-('Hilda Yohana Mendonza Navarro','1','2','123a'),
-('Maria Fernanda Franco Valarez','1','2','123a'),
-('Ana del Rocio Rios Rosales','1','2','123a'),
-('Fernando Roberto Segovia Garcia','1','3','123a'),
-('Cecilia Elizabeth Suarez Moreira','1','3','123a'),
-('Ericka Paola Prado Ortiz','1','3','123a'),
-('Xavier German Yanez Cruz','1','3','123a'),
-('Pablo Efren Navarro Vera','1','3','123a'),
-('Linda Azucena Luna Veliz','1','3','123a');
+('Luis Alberto Villatoro Cano','1','1','123a',1),
+('Jose Carlos Lopez Mainz','1','1','123a',2),
+('Olga Estela Siguenza Lopez','1','1','123a',3),
+('Herson Daniel Hernandez Dante','1','1','123a',4),
+('Jessie Torres Marcos','1','1','123a',5),
+('Marta Patricia Ortega Arcos','1','1','123a',6),
+('Edgar Guillermo Lara Valencia','1','2','123a',1),
+('Monica Karina Tovar Solorzano','1','2','123a',2),
+('Jose Andres Cardenas Molina','1','2','123a',3),
+('Hilda Yohana Mendonza Navarro','1','2','123a',4),
+('Maria Fernanda Franco Valarez','1','2','123a',5),
+('Ana del Rocio Rios Rosales','1','2','123a',6),
+('Fernando Roberto Segovia Garcia','1','3','123a',1),
+('Cecilia Elizabeth Suarez Moreira','1','3','123a',2),
+('Ericka Paola Prado Ortiz','1','3','123a',3),
+('Xavier German Yanez Cruz','1','3','123a',4),
+('Pablo Efren Navarro Vera','1','3','123a',5),
+('Linda Azucena Luna Veliz','1','3','123a',6);
 
 --Insertando bodega
 INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia) VALUES

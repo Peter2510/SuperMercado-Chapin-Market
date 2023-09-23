@@ -10,13 +10,30 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1"> <!-- Segunda tarjeta -->
+    <mat-grid-tile [colspan]="1" [rowspan]="1"> <!-- Segunda tarjeta -->
       <mat-card class="dashboard-card">
         <mat-card-header>
-          <mat-card-title>Título de la Tarjeta 2</mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <app-reporte-ventas></app-reporte-ventas>
+          <app-clientes-top></app-clientes-top>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1"> <!-- Tercera tarjeta -->
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-articulos-top></app-articulos-top>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1"> <!-- Cuarta tarjeta -->
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-sucursales-top></app-sucursales-top>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

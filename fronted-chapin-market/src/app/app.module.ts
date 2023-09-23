@@ -22,7 +22,10 @@ import { MatListModule } from '@angular/material/list';
 import { NavegacionComponent } from './administrador/navegacion/navegacion.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu'
+import { MatMenuModule } from '@angular/material/menu';
+import { ClientesTopComponent } from './administrador/clientes/clientes-top/clientes-top.component';
+import { ArticulosTopComponent } from './administrador/articulos/articulos-top/articulos-top.component';
+import { SucursalesTopComponent } from './administrador/sucursales/sucursales-top/sucursales-top.component'
 
 const routes: Route[] = [
   { path: "", redirectTo:'login',pathMatch:'full' },
@@ -46,7 +49,10 @@ const routes: Route[] = [
     BodegaComponent,
     ReporteVentasComponent,
     DashboardComponent,
-    NavegacionComponent
+    NavegacionComponent,
+    ClientesTopComponent,
+    ArticulosTopComponent,
+    SucursalesTopComponent
   ],
   imports: [
     BrowserModule,

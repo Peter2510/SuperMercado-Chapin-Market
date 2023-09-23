@@ -7,14 +7,23 @@
         <th>Nombre</th>
         <th>Rol</th>
         <th>Sucursal</th>
+        <th>Caja</th>
       </tr>
     </thead>
     <tbody>
         <tr *ngFor="let empleado of empleados">
             <td>{{empleado.codigo}}</td>
             <td>{{empleado.nombre}}</td>
-            <td>{{empleado.nombre_rol}}</td>
-            <td>{{empleado.nombre_sucursal}}</td>
+            <td *ngIf="empleado.codigo_rol==1">Cajero</td>
+            <td *ngIf="empleado.codigo_rol==2">Bodega</td>
+            <td *ngIf="empleado.codigo_rol==3">Inventario</td>
+            <td *ngIf="empleado.codigo_rol==4">Administrador</td>
+            <td *ngIf="empleado.codigo_sucursal=='1'">Central</td>
+            <td *ngIf="empleado.codigo_sucursal=='2'">Norte</td>
+            <td *ngIf="empleado.codigo_sucursal=='3'">Sur</td>
+            <td *ngIf="empleado.caja==0"></td>
+            <td *ngIf="empleado.caja>0">{{empleado.caja}}</td>
+
         </tr>
     </tbody>
   </table>

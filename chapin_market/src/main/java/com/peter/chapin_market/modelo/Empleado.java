@@ -7,11 +7,18 @@ public class Empleado {
 	private int codigo_rol;
 	private int codigo_sucursal;
 	private String contrasenia;
-	private String nombre_sucursal;
-	private String nombre_rol;
+	private int caja;
 	
 	public Empleado() {
 
+	}
+	
+	public int getCaja() {
+		return caja;
+	}
+
+	public void setCaja(int caja) {
+		this.caja = caja;
 	}
 
 	public int getCodigo() {
@@ -53,24 +60,5 @@ public class Empleado {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-
-	public String getNombre_sucursal() {
-		return nombre_sucursal;
-	}
-
-	public void setNombre_sucursal(String nombre_sucursal) {
-		this.nombre_sucursal = nombre_sucursal;
-	}
-
-	public String getNombre_rol() {
-		return nombre_rol;
-	}
-
-	public void setNombre_rol(String nombre_rol) {
-		this.nombre_rol = nombre_rol;
-	}
-
-	
-
 	
 }
