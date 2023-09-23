@@ -18,4 +18,12 @@ export class NavegacionComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  opcion:Number=1;
+
+  mostrarOpcion(opcionMostar:Number){
+
+    this.opcion = opcionMostar;
+
+  }
+
 }

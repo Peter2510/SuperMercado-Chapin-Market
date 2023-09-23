@@ -9,7 +9,6 @@ import { AdministracionComponent } from './administrador/administracion/administ
 import { VentaComponent } from './cajero/venta/venta.component';
 import { InventarioComponent } from './sucursal/inventario/inventario/inventario.component';
 import { BodegaComponent } from './sucursal/bodega/bodega/bodega.component';
-import { ReporteVentasComponent } from './administrador/reporteVentas/reporte-ventas/reporte-ventas.component';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './administrador/dashboard/dashboard.component';
@@ -25,7 +24,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { ClientesTopComponent } from './administrador/clientes/clientes-top/clientes-top.component';
 import { ArticulosTopComponent } from './administrador/articulos/articulos-top/articulos-top.component';
-import { SucursalesTopComponent } from './administrador/sucursales/sucursales-top/sucursales-top.component'
+import { SucursalesTopComponent } from './administrador/sucursales/sucursales-top/sucursales-top.component';
+import { ReporteVentasComponent } from './administrador/ventas/reporte-ventas/reporte-ventas.component';
+import { ReporteDescuentosComponent } from './administrador/descuentos/reporte-descuentos/reporte-descuentos.component';
+import { DescuentosFechasComponent } from './administrador/descuentos/descuentos-fechas/descuentos-fechas.component';
+import { VentasFechasComponent } from './administrador/ventas/ventas-fechas/ventas-fechas.component';
+import { FormsModule } from '@angular/forms';
+import { CrearEmpleadoComponent } from './administrador/empleados/crear-empleado/crear-empleado.component';
 
 const routes: Route[] = [
   { path: "", redirectTo:'login',pathMatch:'full' },
@@ -47,12 +52,17 @@ const routes: Route[] = [
     VentaComponent,
     InventarioComponent,
     BodegaComponent,
-    ReporteVentasComponent,
     DashboardComponent,
     NavegacionComponent,
     ClientesTopComponent,
     ArticulosTopComponent,
-    SucursalesTopComponent
+    SucursalesTopComponent,
+    ReporteVentasComponent,
+    ReporteDescuentosComponent,
+    DescuentosFechasComponent,
+    VentasFechasComponent,
+    CrearEmpleadoComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -68,7 +78,8 @@ const routes: Route[] = [
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

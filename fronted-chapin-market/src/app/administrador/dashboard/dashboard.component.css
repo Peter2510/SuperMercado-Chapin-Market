@@ -7,7 +7,7 @@
   top: 15px;
   left: 15px;
   right: 15px;
-  max-height: 350px; /* Establece la altura máxima que desees */
+  max-height: 350px;
   overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura máxima */
   bottom: 15px;
 }
@@ -20,10 +20,4 @@
 
 .dashboard-card-content {
   text-align: center;
-}
-
-/* styles.css o styles.scss */
-.scrollable-card {
-  max-height: 350px; /* Establece la altura máxima que desees */
-  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura máxima */
 }

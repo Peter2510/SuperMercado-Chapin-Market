@@ -1,0 +1,52 @@
+<div class="grid-container">
+
+    <h1 class="mat-h1 text-center">Administración</h1>
+  
+      <form class="form" >
+          <h2 class="form__title">Agregar Empleado</h2>
+  
+          <div class="form__container">
+              <div class="form__group">
+                  <input type="text" name="name" id="name" class="form__input" placeholder=" " required>
+                  <label for="name" class="form__label">Nombre del empleado</label>
+                  <span class="form__line"></span>
+              </div>
+  
+              <div class="form__group">
+                  <select name="rol" id="rol" class="form__input" required (change)="cambiarTipoEmpleado($event)">
+                    <option value="" disabled selected>Rol del empleado</option>
+                    <option value="1">Cajero</option>
+                    <option value="2">Inventario</option>
+                    <option value="3">Bodega</option>
+                  </select>
+                  <span class="form__line"></span>
+                </div>
+                
+                <div class="form__group">
+                  <select name="sucursal" id="sucursal" class="form__input" required>
+                    <option value="" disabled selected>Sucursal del empleado</option>
+                    <option value="1">Central</option>
+                    <option value="2">Norte</option>
+                    <option value="3">Sur</option>
+                  </select>
+                  <span class="form__line"></span>
+                </div>
+  
+                <div class="form__group" *ngIf="tipoEmpleado==1">
+                  <input type="number" name="caja" id="caja" class="form__input" placeholder=" " required min="1">
+                  <label for="caja" class="form__label">Número de caja</label>
+                  <span class="form__line"></span>
+                </div>
+  
+              <div class="form__group">
+                  <input type="password" name="password" id="password" class="form__input" placeholder=" " required>
+                  <label for="password" class="form__label">Contraseña</label>
+                  <span class="form__line"></span>
+              </div>
+  
+              <input type="submit" class="form__submit" name="login" value="Agregar">
+          </div>
+  
+      </form>
+  </div>
+  
