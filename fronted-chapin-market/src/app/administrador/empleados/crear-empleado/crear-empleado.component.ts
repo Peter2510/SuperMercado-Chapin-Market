@@ -30,7 +30,7 @@ export class CrearEmpleadoComponent {
     this.validarCampos();
 
     if(this.nombreNull==false && this.rolNull==false && this.sucursalNull==false && this.constraseniaNull==false && this.cajaNull==false ){
-        console.log("Crear empleado");
+        alert("Crear empleado")
     }
 
   }
