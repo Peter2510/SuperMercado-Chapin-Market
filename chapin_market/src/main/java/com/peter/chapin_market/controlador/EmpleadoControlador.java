@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
-
 import com.peter.chapin_market.dao.EmpleadoDAO;
-
+import com.peter.chapin_market.modelo.Credenciales;
 import com.peter.chapin_market.modelo.Empleado;
-import com.peter.chapin_market.utils.JWTRequest;
-import com.peter.chapin_market.utils.JWTUtil;
-import com.peter.chapin_market.utils.JWTResponse;
+
 
 @RestController
 @RequestMapping("/")
@@ -25,8 +22,6 @@ public class EmpleadoControlador {
 
 	@Autowired
 	private EmpleadoDAO empleados; // Inyecta el DataSource "configuracion de la base de datos"
-	@Autowired
-	private JWTUtil jwutil;
 	
 	@GetMapping(value = "/chapinMarket/empleados", produces = "application/json")
 	@Cacheable("empleados")
@@ -37,27 +32,28 @@ public class EmpleadoControlador {
 		if (lista!=null) {
 			return ResponseEntity.ok(lista);
 		} else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.notFound().build();
 		}
 
 	}
 	
 
 	@RequestMapping(value = "/chapinMarket/login", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<JWTResponse> login(@RequestBody JWTRequest credenciales) {
+	public ResponseEntity<Empleado> login(@RequestBody Credenciales credenciales) {
 
 		//se obtiene el codigo y contraseña y se valida para generar el JWT o en codigo 401
 		Empleado empleado = empleados.verificarCredenciales(credenciales.getCodigo(), credenciales.getContrasenia());
 	
-		if(empleado!=null&&empleado.getNombre()!=null) {
+		if(empleado!=null) {
 
-			String token_string = jwutil.create(String.valueOf(empleado.getCodigo()),empleado.getNombre(),String.valueOf(empleado.getCodigo_rol()),String.valueOf(empleado.getCaja()),String.valueOf(empleado.getCodigo_sucursal())); 
+			/*String token_string = jwutil.create(String.valueOf(empleado.getCodigo()),empleado.getNombre(),String.valueOf(empleado.getCodigo_rol()),String.valueOf(empleado.getCaja()),String.valueOf(empleado.getCodigo_sucursal())); 
 			JWTResponse token = new JWTResponse();
-			token.setToken(token_string);
-			return ResponseEntity.ok(token);
+			token.setToken(token_string);*/
+			//return ResponseEntity.ok(token);
+			return ResponseEntity.ok(empleado);
 			
 		}else {
-			return ResponseEntity.status(401).build();
+			return ResponseEntity.notFound().build();
 		}
 		
 	}

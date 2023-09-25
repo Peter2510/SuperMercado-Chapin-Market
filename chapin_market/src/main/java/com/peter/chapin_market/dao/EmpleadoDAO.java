@@ -10,7 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
+/*import org.springframework.security.core.userdetails.UserDetails;*/
 import org.springframework.stereotype.Service;
 
 import com.peter.chapin_market.modelo.Empleado;
@@ -96,7 +96,7 @@ public class EmpleadoDAO {
 		
 	}
 	
-	public UserDetails getEmpleadoById(String code) {
+/*	public UserDetails getEmpleadoById(String code) {
 		
 		int codigo = Integer.parseInt(code);
 		Connection connection;
@@ -131,7 +131,7 @@ public class EmpleadoDAO {
 		}
 		
 		
-	}
+	}*/
 
 
 }

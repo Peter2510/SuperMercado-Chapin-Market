@@ -7,13 +7,21 @@
 
           <form (ngSubmit)="login()">
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="floatingInput" placeholder="Código" [(ngModel)]="codigo" [ngModelOptions]="{standalone: true}">
+              <input type="number" class="form-control" id="floatingInput" placeholder="Código" [(ngModel)]="loginData.codigo" [ngModelOptions]="{standalone: true}">
               <label for="floatingInput">Código</label>
-
+              <div class="alert alert-warning mt-2" role="alert" *ngIf="codigoNull">
+                Debes ingresar el código de empleado
+              </div>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [(ngModel)]="contrasenia" [ngModelOptions]="{standalone: true}">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [(ngModel)]="loginData.contrasenia" [ngModelOptions]="{standalone: true}">
               <label for="floatingPassword">Contraseña</label>
+              <div class="alert alert-warning mt-2" role="alert" *ngIf="contraseniaNull">
+                Debes ingresar una contrasenia
+              </div>
+              <div class="alert alert-warning mt-2" role="alert" *ngIf="!credencialesIncorrectas">
+                Credenciales incorectas
+              </div>
             </div>
             <div class="d-grid">
               <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Ingresar</button>

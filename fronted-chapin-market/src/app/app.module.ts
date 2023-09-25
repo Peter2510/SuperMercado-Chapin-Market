@@ -31,14 +31,18 @@ import { DescuentosFechasComponent } from './administrador/descuentos/descuentos
 import { VentasFechasComponent } from './administrador/ventas/ventas-fechas/ventas-fechas.component';
 import { FormsModule } from '@angular/forms';
 import { CrearEmpleadoComponent } from './administrador/empleados/crear-empleado/crear-empleado.component';
+import { AdministradorGuard } from './login/guard/administrador.guard';
+import { BodegaGuard } from './login/guard/bodega.guard';
+import { InventarioGuard } from './login/guard/inventario.guard';
+import { CajeroGuard } from './login/guard/cajero.guard';
 
 const routes: Route[] = [
-  { path: "", redirectTo:'login',pathMatch:'full' },
-  { path: "login", component:LoginComponent },
-  { path: "administracion", component:AdministracionComponent },
-  { path: "bodega", component:BodegaComponent },
-  { path: "inventario", component:InventarioComponent },
-  { path: "cajero", component:VentaComponent },
+  { path: "", redirectTo:'login',pathMatch:'full'},
+  { path: "login", component:LoginComponent},
+  { path: "administracion", component:AdministracionComponent,canActivate:[AdministradorGuard]},
+  { path: "bodega", component:BodegaComponent,canActivate:[BodegaGuard]},
+  { path: "inventario", component:InventarioComponent,canActivate:[InventarioGuard]},
+  { path: "cajero", component:VentaComponent,canActivate:[CajeroGuard]},
   { path: "**", redirectTo: "login" }
   
 ];

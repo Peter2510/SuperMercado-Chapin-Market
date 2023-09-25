@@ -1,10 +1,10 @@
-package com.peter.chapin_market.utils;
+package com.peter.chapin_market.modelo;
 
-public class JWTRequest {
+public class Credenciales {
+	
 	private String codigo;
-    private String contrasenia;
-
-    public String getCodigo() {
+	private String contrasenia;
+	public String getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
@@ -16,4 +16,5 @@ public class JWTRequest {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
+	
 }

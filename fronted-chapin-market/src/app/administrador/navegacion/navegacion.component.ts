@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { LoginService } from 'src/app/login/login-service/login.service';
 
 @Component({
   selector: 'app-navegacion',
@@ -16,14 +17,19 @@ export class NavegacionComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,public loginService:LoginService) {}
 
   opcion:Number=1;
 
-  mostrarOpcion(opcionMostar:Number){
+  public mostrarOpcion(opcionMostar:Number){
 
     this.opcion = opcionMostar;
 
+  }
+
+  public cerrarSesion(){
+    this.loginService.logOut();
+    window.location.reload();
   }
 
 }
