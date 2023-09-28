@@ -11,14 +11,12 @@ import { InventarioComponent } from './sucursal/inventario/inventario/inventario
 import { BodegaComponent } from './sucursal/bodega/bodega/bodega.component';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './administrador/dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { NavegacionComponent } from './administrador/navegacion/navegacion.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -35,6 +33,15 @@ import { AdministradorGuard } from './login/guard/administrador.guard';
 import { BodegaGuard } from './login/guard/bodega.guard';
 import { InventarioGuard } from './login/guard/inventario.guard';
 import { CajeroGuard } from './login/guard/cajero.guard';
+import { DashboardComponentAdmin } from './administrador/dashboard/dashboard.component';
+import { NavegacionComponentAdmin } from './administrador/navegacion/navegacion.component';
+import { DashboardComponentCajero } from './cajero/dashboard/dashboard.component';
+import { NavegacionComponentCajero } from './cajero/navegacion/navegacion.component';
+import { NavegacionComponentInventario } from './sucursal/inventario/navegacion/navegacion.component';
+import { DashboardComponentInventario } from './sucursal/inventario/dashboard/dashboard.component';
+import { NavegacionComponentBodega } from './sucursal/bodega/navegacion/navegacion.component';
+import { DashboardComponentBodega } from './sucursal/bodega/dashboard/dashboard.component';
+import { MostrarProductosComponent } from './sucursal/inventario/mostrar-productos/mostrar-productos.component';
 
 const routes: Route[] = [
   { path: "", redirectTo:'login',pathMatch:'full'},
@@ -56,8 +63,10 @@ const routes: Route[] = [
     VentaComponent,
     InventarioComponent,
     BodegaComponent,
-    DashboardComponent,
-    NavegacionComponent,
+    DashboardComponentAdmin,
+    NavegacionComponentAdmin,
+    DashboardComponentCajero,
+    NavegacionComponentCajero,
     ClientesTopComponent,
     ArticulosTopComponent,
     SucursalesTopComponent,
@@ -66,6 +75,11 @@ const routes: Route[] = [
     DescuentosFechasComponent,
     VentasFechasComponent,
     CrearEmpleadoComponent,
+    NavegacionComponentInventario,
+    DashboardComponentInventario,
+    NavegacionComponentBodega,
+    DashboardComponentBodega,
+    MostrarProductosComponent,
     
   ],
   imports: [

@@ -6,14 +6,14 @@ public class Cliente {
 	private int puntos;
 	private String nit;
 	private double compras;
-	private String tipo_tarjeta;
+	private int tipo_tarjeta;
 	
 
 	public Cliente() {
 
 	}
 
-	public Cliente(String nombre, int puntos, String nit, double compras, String tipo_tarjeta) {
+	public Cliente(String nombre, int puntos, String nit, double compras, int tipo_tarjeta) {
 		this.nombre = nombre;
 		this.puntos = puntos;
 		this.nit = nit;
@@ -53,11 +53,11 @@ public class Cliente {
 		this.compras = compras;
 	}
 
-	public String getTipo_tarjeta() {
+	public int getTipo_tarjeta() {
 		return tipo_tarjeta;
 	}
 
-	public void setTipo_tarjeta(String tipo_tarjeta) {
+	public void setTipo_tarjeta(int tipo_tarjeta) {
 		this.tipo_tarjeta = tipo_tarjeta;
 	}
 	

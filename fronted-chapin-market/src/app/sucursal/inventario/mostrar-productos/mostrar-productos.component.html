@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="text-center" *ngIf="sucursal=='1'" >Productos en el inventario de la sucursal central</h1>
+    <h1 class="text-center" *ngIf="sucursal=='2'" >Productos en el inventario de la sucursal norte</h1>
+    <h1 class="text-center" *ngIf="sucursal=='3'" >Productos en el inventario de la sucursal sur</h1>
+
+    <table class="table table-striped table-bordered">
+      <thead class="table table-dark">
+        <tr>
+          <th class="text-center" >Sucursal</th>
+          <th class="text-center" >Codigo del producto</th>
+          <th class="text-center" >Nombre</th>
+          <th class="text-center" >Pasillo</th>
+          <th class="text-center" >Estante</th>
+          <th class="text-center" >Cantidad en inventario</th>
+          <th class="text-center" >Cantidad en bodega</th>
+          <th class="text-center" >Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let producto of inventario">
+              <td class="text-center" *ngIf="producto.codigo_sucursal==1">Central</td>
+              <td class="text-center" *ngIf="producto.codigo_sucursal==2">Norte</td>
+              <td class="text-center" *ngIf="producto.codigo_sucursal==3">Sur</td>
+              <td class="text-center" > {{producto.codigo_producto}}</td>
+              <td class="text-center" >{{producto.nombre_producto}}</td>
+              <td class="text-center" >{{producto.numero_pasillo}}</td>
+              <td class="text-center" >{{producto.numero_estante}}</td>
+              <td class="text-center" >{{producto.cantidad_producto_inventario}}</td>
+              <td class="text-center" >{{producto.cantidad_producto_bodega}}</td>
+              <td class="text-center"><button type="button" class="btn btn-outline-success btn-sm m-0 ">Agregar a inventario</button></td> 
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/login/login-service/login.service';
   templateUrl: './navegacion.component.html',
   styleUrls: ['./navegacion.component.css']
 })
-export class NavegacionComponent {
+export class NavegacionComponentAdmin {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

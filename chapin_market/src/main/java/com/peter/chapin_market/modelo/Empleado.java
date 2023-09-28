@@ -1,7 +1,5 @@
 package com.peter.chapin_market.modelo;
 
-import java.util.Collection;
-
 public class Empleado{
 
 	private int codigo;

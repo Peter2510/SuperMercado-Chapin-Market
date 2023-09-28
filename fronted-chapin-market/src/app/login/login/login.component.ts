@@ -17,9 +17,12 @@ export class LoginComponent {
   contraseniaNull = false;
   credencialesIncorrectas = true;
 
-  constructor(private loginService: LoginService,private router:Router) {}
+  constructor(private loginService: LoginService,private router:Router) {
+    this.loginService.logOut();
+  }
 
   login() {
+    
     this.validarCredenciales();
     if (!this.codigoNull && !this.contraseniaNull) {
       //validar si existe el empleado

@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/login/login-service/login.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponentAdmin implements OnInit{
   
   constructor(private breakpointObserver: BreakpointObserver,public login:LoginService) {}
 
