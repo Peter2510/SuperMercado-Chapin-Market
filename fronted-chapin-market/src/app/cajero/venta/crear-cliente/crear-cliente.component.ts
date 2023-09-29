@@ -10,7 +10,7 @@ import { VentaService } from '../service/venta.service';
 })
 export class CrearClienteComponent {
   nombre: String;
-  tipo_tarjeta: Number;
+  tarjetaPuntos: boolean = false;
   @Input() nit: string;
   nombreNull = false;
   nitNull = false;
@@ -26,14 +26,18 @@ export class CrearClienteComponent {
       // Utiliza this.nitValor en lugar de this.nit
       if (nitValor.length >= 9 && nitValor.length <= 10) {
         //crear el cliente
-
+       
         let cliente = {
           nombre: this.nombre,
           puntos: 0,
           nit: nitValor,
           compras: 0,
-          tarjeta: this.tipo_tarjeta,
+          tipo_tarjeta: 0,
         };
+
+        if(this.tarjetaPuntos){
+          cliente.tipo_tarjeta = 1;
+        }
 
         console.log(cliente);
 

@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { LoginService } from '../login-service/login.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -57,7 +58,13 @@ export class LoginComponent {
                 break;
             }
           } else {
-            this.credencialesIncorrectas = false;
+            swal({
+              title: 'Credenciales incorrectas',
+              text: 'Verifica tu usuario y contraseña',
+              type: 'warning',
+              confirmButtonText: 'Continuar',
+              
+            })
           }
         },
         (error) => {

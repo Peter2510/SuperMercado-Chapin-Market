@@ -38,7 +38,6 @@ public class ClienteControlador {
 	@PostMapping(value = "/chapinMarket/crear-cliente",produces="application/json")
 	public ResponseEntity<Boolean> crearCliente(@RequestBody Cliente clienteR){
 		
-				
 		boolean seAgrego = cliente.agregarCliente(clienteR);
 		
 		if(seAgrego) {

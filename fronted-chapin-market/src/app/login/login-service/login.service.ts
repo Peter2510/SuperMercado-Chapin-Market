@@ -20,6 +20,7 @@ export class LoginService {
   }
 
   public sesion(usuario:any){
+    //Guarda el objeto retornado en el local storage
     localStorage.setItem('usuario',JSON.stringify(usuario));
   }
 
