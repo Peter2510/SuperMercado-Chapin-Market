@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { LoginService } from 'src/app/login/login-service/login.service';
 
 @Component({
   selector: 'app-dashboard-cajero',
@@ -29,5 +30,5 @@ export class DashboardComponentCajero {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,public login:LoginService) {}
 }

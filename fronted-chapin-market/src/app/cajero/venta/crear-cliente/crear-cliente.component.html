@@ -1,0 +1,44 @@
+<div class="grid-container">
+      <form class="form" (ngSubmit)="crearCliente()">
+          <h2 class="form__title">Ingresar cliente</h2>
+  
+          <div class="form__container">
+              
+             <div class="form__group">
+                  <input type="text" name="name" id="name" class="form__input" placeholder=" " [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}">
+                  <label for="name" class="form__label">Nombre del cliente</label>
+                  <span class="form__line"></span>
+                  <div class="alert alert-warning mt-2" role="alert" *ngIf="nombreNull">
+                    Debes ingresar un nombre para el cliente
+                  </div>
+              </div>
+
+              <div class="form__group">
+                <input type="number" name="nit" id="nit" class="form__input" placeholder=" " required [(ngModel)]="nit" [ngModelOptions]="{standalone: true}">
+                <label for="nit" class="form__label">Nit</label>
+                <span class="form__line"></span>
+                <div class="alert alert-warning mt-2" role="alert" *ngIf="nitNull" >
+                  Debes ingresar un nit para registrar al cliente
+                </div>
+            </div>
+
+            <div class="form-check">
+              <p>Solicitar tarjeta</p>
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [(ngModel)]="tipo_tarjeta" value="1">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Si
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="tipo_tarjeta" value="0" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                No
+              </label>
+            </div>
+                  
+              <input type="submit" class="form__submit" name="login" value="Agregar">
+          </div>
+  
+      </form>
+  </div>
+  

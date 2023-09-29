@@ -27,15 +27,14 @@ public class ClienteDAO {
 		try {
 
 			connection = dataSource.getConnection();
-			String query = "SELECT * FROM clientes.cliente WHERE nit = ?;"; 
+			String query = "SELECT * FROM clientes.cliente WHERE nit = ?"; 
 			PreparedStatement preST = connection.prepareStatement(query);
 			preST.setString(1,nit);
 			resultSet = preST.executeQuery();
 			
-			Cliente clienteHallado=null;
+			Cliente clienteHallado = new Cliente();;
 			
 			while (resultSet.next()) {
-				clienteHallado = new Cliente();
 				clienteHallado.setNombre(resultSet.getString("nombre"));
 				clienteHallado.setPuntos(resultSet.getInt("puntos"));
 				clienteHallado.setNit(resultSet.getString("nit"));
@@ -53,6 +52,42 @@ public class ClienteDAO {
 			return null;
 		}
 		
+		
+	}
+	
+	public boolean agregarCliente(Cliente cliente) {
+		
+		Connection connection;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "INSERT INTO clientes.cliente (nombre,puntos,nit,compras,tarjeta) VALUES (?,?,?,?,?)" ; 
+			PreparedStatement preST = connection.prepareStatement(query);
+			preST.setString(1,cliente.getNombre());
+			preST.setInt(2,cliente.getPuntos());
+			preST.setString(3,cliente.getNit());
+			preST.setDouble(4,cliente.getCompras());
+			preST.setInt(5,cliente.getTipo_tarjeta());
+			
+			int insertado = preST.executeUpdate();
+			
+			if(insertado>0) {
+				
+				connection.close();
+				return true;
+			}else {
+				
+				connection.close();
+				return false;
+			}
+
+									
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return false;
+		}
 		
 	}
 	

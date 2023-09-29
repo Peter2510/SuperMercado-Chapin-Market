@@ -41,7 +41,11 @@ import { NavegacionComponentInventario } from './sucursal/inventario/navegacion/
 import { DashboardComponentInventario } from './sucursal/inventario/dashboard/dashboard.component';
 import { NavegacionComponentBodega } from './sucursal/bodega/navegacion/navegacion.component';
 import { DashboardComponentBodega } from './sucursal/bodega/dashboard/dashboard.component';
-import { MostrarProductosComponent } from './sucursal/inventario/mostrar-productos/mostrar-productos.component';
+import { MostrarProductosInventarioComponent } from './sucursal/inventario/mostrar-productos-inventario/mostrar-productos.component';
+import { MostarProductosBodegaComponent } from './sucursal/bodega/mostar-productos-bodega/mostar-productos.component';
+import { ValidarComponent } from './cajero/venta/validar-cliente/validar/validar.component';
+import { CrearClienteComponent } from './cajero/venta/crear-cliente/crear-cliente.component';
+import { CrearVentaComponent } from './cajero/venta/crear-venta/crear-venta.component';
 
 const routes: Route[] = [
   { path: "", redirectTo:'login',pathMatch:'full'},
@@ -79,7 +83,11 @@ const routes: Route[] = [
     DashboardComponentInventario,
     NavegacionComponentBodega,
     DashboardComponentBodega,
-    MostrarProductosComponent,
+    MostrarProductosInventarioComponent,
+    MostarProductosBodegaComponent,
+    ValidarComponent,
+    CrearClienteComponent,
+    CrearVentaComponent
     
   ],
   imports: [

@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 class="text-center" *ngIf="sucursal=='1'" >Productos en la bodega de la sucursal central</h1>
+    <h1 class="text-center" *ngIf="sucursal=='2'" >Productos en la bodega de la sucursal norte</h1>
+    <h1 class="text-center" *ngIf="sucursal=='3'" >Productos en la bodega de la sucursal sur</h1>
+
+    <table class="table table-striped table-bordered">
+      <thead class="table table-dark">
+        <tr>
+          <th class="text-center" ></th>  
+          <th class="text-center" >Sucursal</th>
+          <th class="text-center" >Codigo del producto</th>
+          <th class="text-center" >Nombre</th>
+          <th class="text-center" >Cantidad en bodega</th>
+          <th class="text-center" >Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let producto of bodega; let i = index">
+              <td>{{ i + 1 }}</td> 
+              <td class="text-center" *ngIf="producto.codigo_sucursal==1">Central</td>
+              <td class="text-center" *ngIf="producto.codigo_sucursal==2">Norte</td>
+              <td class="text-center" *ngIf="producto.codigo_sucursal==3">Sur</td>
+              <td class="text-center" > {{producto.codigo_producto}}</td>
+              <td class="text-center" >{{producto.nombre_producto}}</td>
+              <td class="text-center" >{{producto.cantidad_producto}}</td>
+              <td class="text-center" >{{producto.precio_unitario}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>

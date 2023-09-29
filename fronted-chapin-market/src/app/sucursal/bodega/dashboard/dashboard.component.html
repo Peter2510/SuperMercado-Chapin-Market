@@ -1,3 +1,7 @@
 <div class="grid-container">
-  <h1>Productos</h1>
+  <p  class="fs-6 ms-4 fw-medium" *ngIf="login.estaLoggeado()">Usuario: {{login.getNombre()}}</p>
+  <p class="fs-6 ms-4 fw-medium" *ngIf="login.estaLoggeado() && login.getSucursal()==1">Sucursal: Central</p>
+  <p class="fs-6 ms-4 fw-medium" *ngIf="login.estaLoggeado() && login.getSucursal()==2">Sucursal: Norte</p>
+  <p class="fs-6 ms-4 fw-medium" *ngIf="login.estaLoggeado() && login.getSucursal()==3">Sucursal: Sur</p>
+  <app-mostar-productos-bodega></app-mostar-productos-bodega>
 </div>

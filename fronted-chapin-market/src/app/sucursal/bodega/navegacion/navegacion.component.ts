@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { LoginService } from 'src/app/login/login-service/login.service';
 
 @Component({
   selector: 'app-navegacion-bodega',
@@ -16,6 +17,11 @@ export class NavegacionComponentBodega {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,public loginService:LoginService) {}
+
+  public cerrarSesion(){
+    this.loginService.logOut();
+    window.location.reload();
+  }
 
 }

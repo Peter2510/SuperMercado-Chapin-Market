@@ -1,0 +1,25 @@
+<div class="grid-container">
+
+    <h1 class="mat-h1 text-center">Cajero</h1>
+    
+    <form class="form" (ngSubmit)="validarCliente()" *ngIf="!crearCliente" >
+        <h2 class="form__title">Venta</h2>
+  
+        <div class="form__container">
+             
+            <div class="form__group">
+            
+                <input type="number" name="nit" id="nit" class="form__input" placeholder=" " [(ngModel)]="nit">
+                <label for="nit" class="form__label">Nit del cliente</label>
+                <span class="form__line"></span>
+            </div>
+  
+            <input type="submit" class="form__submit" name="venta" value="Continuar">
+        </div>
+  
+    </form>
+
+    <app-crear-cliente *ngIf="crearCliente" [nit]="nit" ></app-crear-cliente>
+    
+  </div>
+

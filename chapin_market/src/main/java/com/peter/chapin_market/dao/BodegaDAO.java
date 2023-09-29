@@ -41,7 +41,7 @@ public class BodegaDAO {
 				bodega.setCodigo_producto(resultSet.getInt("codigo_producto"));
 				bodega.setNombre_producto(resultSet.getString("nombre"));
 				bodega.setCantidad_producto(resultSet.getInt("cantidad_producto"));
-				bodega.setPrecioUnitario(resultSet.getDouble("precio"));
+				bodega.setPrecio_unitario(resultSet.getInt("precio"));
 
 				productos.add(bodega);
 			}

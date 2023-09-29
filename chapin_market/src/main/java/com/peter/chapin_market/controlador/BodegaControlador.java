@@ -2,11 +2,13 @@ package com.peter.chapin_market.controlador;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.peter.chapin_market.dao.BodegaDAO;
@@ -27,11 +29,13 @@ public class BodegaControlador {
 	@Autowired
 	private ProductoDAO producto;
 	
-	@GetMapping(value = "/chapinMarket/bodega", produces="application/json")
-	public ResponseEntity<List<Bodega>> getProductosBodega(@RequestBody SucursalRequest sucursal) {
 
+	@GetMapping(value = "/chapinMarket/bodega", produces="application/json")
+	public ResponseEntity<List<Bodega>> getProductosBodega(@RequestParam String sucursal) {
+   
+		int codigo = Integer.parseInt(sucursal);
 		//se obtienen los productos en bodega de una sucursal  		  		
-  		List<Bodega> lista = bodega.getProductos(Integer.parseInt(sucursal.getSucursal()));
+  		List<Bodega> lista = bodega.getProductos((codigo));
   	
 		if(lista!=null) {
 			return ResponseEntity.ok(lista);		
@@ -41,12 +45,12 @@ public class BodegaControlador {
 		
 	}
   	
-  	@RequestMapping(value = "/chapinMarket/producto", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
-	public ResponseEntity<Producto> obtenerProducto(@RequestBody ProductoRequest productoR) {
+  	@RequestMapping(value = "/chapinMarket/producto", method = RequestMethod.GET, produces="application/json")
+	public ResponseEntity<Producto> obtenerProducto(@RequestParam String codigo) {
 
+  		int codigoProducto = Integer.parseInt(codigo);
 		//se obtienen los productos en bodega de una sucursal  		  		
-  		System.out.println(productoR.getCodigo());
-  		Producto productoHallado = producto.existeProducto(productoR.getCodigo());
+  		Producto productoHallado = producto.existeProducto(codigoProducto);
   		
   		if(productoHallado!=null) {
   		

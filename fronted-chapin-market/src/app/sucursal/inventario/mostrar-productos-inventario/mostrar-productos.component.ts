@@ -4,12 +4,12 @@ import { Inventario } from '../Inventario';
 import { InventarioService } from '../productos/service/inventario.service';
 
 @Component({
-  selector: 'app-mostrar-productos',
+  selector: 'app-mostrar-productos-inventario',
   templateUrl: './mostrar-productos.component.html',
   styleUrls: ['./mostrar-productos.component.css']
 })
 
-export class MostrarProductosComponent implements OnInit {
+export class MostrarProductosInventarioComponent implements OnInit {
   inventario:Inventario[];
   sucursal:string = this.loginService.getSucursal();
 

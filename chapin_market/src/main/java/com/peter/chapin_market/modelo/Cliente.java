@@ -60,6 +60,12 @@ public class Cliente {
 	public void setTipo_tarjeta(int tipo_tarjeta) {
 		this.tipo_tarjeta = tipo_tarjeta;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [nombre=" + nombre + ", puntos=" + puntos + ", nit=" + nit + ", compras=" + compras
+				+ ", tipo_tarjeta=" + tipo_tarjeta + "]";
+	}
 	
 		
 	

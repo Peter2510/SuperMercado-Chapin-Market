@@ -20,7 +20,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>fronted-chapin-market</span>
+      <span>Bodega</span>
+      <button class="position-absolute top-2 mx-3 end-0 btn btn-outline-light" (click)="cerrarSesion()" >Cerrar sesion</button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <app-dashboard-bodega></app-dashboard-bodega>

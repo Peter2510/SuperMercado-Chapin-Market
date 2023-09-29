@@ -42,7 +42,7 @@ public class EmpleadoControlador {
 	@PostMapping(value = "/chapinMarket/login", consumes = "application/json")
 	public ResponseEntity<Empleado> login(@RequestBody Credenciales credenciales) {
 
-		//se obtiene el codigo y contraseña y se valida para generar el JWT o en codigo 401
+		//se obtiene el codigo y contraseña y se valida 
 		Empleado empleado = empleados.verificarCredenciales(credenciales.getCodigo(), credenciales.getContrasenia());
 	
 		if(empleado!=null) {

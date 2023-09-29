@@ -6,6 +6,7 @@
     <table class="table table-striped table-bordered">
       <thead class="table table-dark">
         <tr>
+          <th class="text-center" ></th>
           <th class="text-center" >Sucursal</th>
           <th class="text-center" >Codigo del producto</th>
           <th class="text-center" >Nombre</th>
@@ -17,7 +18,8 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let producto of inventario">
+              <tr *ngFor="let producto of inventario; let i = index">
+              <td>{{ i + 1 }}</td> 
               <td class="text-center" *ngIf="producto.codigo_sucursal==1">Central</td>
               <td class="text-center" *ngIf="producto.codigo_sucursal==2">Norte</td>
               <td class="text-center" *ngIf="producto.codigo_sucursal==3">Sur</td>
