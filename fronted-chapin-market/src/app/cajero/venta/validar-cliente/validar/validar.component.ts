@@ -16,6 +16,7 @@ export class ValidarComponent {
   sucursal: string = this.loginService.getSucursal();
   crearCliente = false;
   crearVenta = false;
+  validarNit = true;
 
   constructor(
     private ventaService: VentaService,
@@ -29,6 +30,7 @@ export class ValidarComponent {
       //GENERAR VENTA
       this.crearVenta=true;
       this.crearCliente = false;
+      this.validarNit=false;
 
     } else {
       

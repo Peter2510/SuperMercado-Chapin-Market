@@ -19,7 +19,7 @@ export class LoginComponent {
   credencialesIncorrectas = true;
 
   constructor(private loginService: LoginService,private router:Router) {
-    this.loginService.logOut();
+    
   }
 
   login() {
