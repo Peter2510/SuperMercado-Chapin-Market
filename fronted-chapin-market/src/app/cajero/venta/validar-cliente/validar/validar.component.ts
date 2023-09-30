@@ -42,6 +42,7 @@ export class ValidarComponent {
           //GENERAR VENTA
           this.crearVenta=true;
           this.crearCliente = false;
+          this.validarNit=false;
           
 
         } else {
@@ -60,6 +61,7 @@ export class ValidarComponent {
                 //CREAR CLIENTE
                 this.crearCliente= true;
                 this.crearVenta = false;
+                this.validarNit=false;
               
             }
           })

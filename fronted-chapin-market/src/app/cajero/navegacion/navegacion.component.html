@@ -1,5 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
-
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Acciones</mat-toolbar>
+    <mat-nav-list>
+      <button class="btn m-md-2" (click)="irInicio()" >Inicio</button>
+      <hr class="w-25 mx-auto">
+    </mat-nav-list>
+  </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button

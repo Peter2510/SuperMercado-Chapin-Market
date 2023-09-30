@@ -47,5 +47,12 @@ public class Bodega {
 	public void setPrecio_unitario(double precio_unitario) {
 		this.precio_unitario = precio_unitario;
 	}
+
+	@Override
+	public String toString() {
+		return "Bodega [codigo_producto=" + codigo_producto + ", codigo_sucursal=" + codigo_sucursal
+				+ ", nombre_producto=" + nombre_producto + ", cantidad_producto=" + cantidad_producto
+				+ ", precio_unitario=" + precio_unitario + "]";
+	}
 		
 }

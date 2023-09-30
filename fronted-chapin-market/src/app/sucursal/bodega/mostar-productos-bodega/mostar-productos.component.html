@@ -11,7 +11,7 @@
           <th class="text-center" >Codigo del producto</th>
           <th class="text-center" >Nombre</th>
           <th class="text-center" >Cantidad en bodega</th>
-          <th class="text-center" >Precio</th>
+          <th class="text-center" >Accion</th>
         </tr>
       </thead>
       <tbody>
@@ -23,8 +23,9 @@
               <td class="text-center" > {{producto.codigo_producto}}</td>
               <td class="text-center" >{{producto.nombre_producto}}</td>
               <td class="text-center" >{{producto.cantidad_producto}}</td>
-              <td class="text-center" >{{producto.precio_unitario}}</td>
+              <td class="text-center"><button type="button" class="btn btn-outline-success btn-sm m-0 " value={{producto.codigo_producto}}>Incrementar Stock</button></td> 
           </tr>
       </tbody>
     </table>
   </div>
+

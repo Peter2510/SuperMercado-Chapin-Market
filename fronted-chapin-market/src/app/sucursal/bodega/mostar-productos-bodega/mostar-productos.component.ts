@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/login/login-service/login.service';
 import { Bodega } from '../Bodega';
 import { BodegaService } from '../productos/service/bodega.service';
@@ -8,7 +8,8 @@ import { BodegaService } from '../productos/service/bodega.service';
   templateUrl: './mostar-productos.component.html',
   styleUrls: ['./mostar-productos.component.css']
 })
-export class MostarProductosBodegaComponent {
+
+export class MostarProductosBodegaComponent implements OnInit{
 
 
   bodega:Bodega[];
@@ -18,6 +19,7 @@ export class MostarProductosBodegaComponent {
 
   ngOnInit(): void {
     this.obtenerProductosBodega();
+   
   }
   
   private obtenerProductosBodega(){
@@ -25,5 +27,6 @@ export class MostarProductosBodegaComponent {
       this.bodega = data;
     })
   }
+
 
 }

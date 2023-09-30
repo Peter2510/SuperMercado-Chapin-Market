@@ -61,7 +61,7 @@ export class CrearEmpleadoComponent {
       this.constraseniaNull = false;
     }
 
-    if(this.tipoEmpleado == 1 && this.caja == null){
+    if(this.tipoEmpleado == 1 && this.caja == null && Number.isInteger(this.caja)){
       this.cajaNull = true;
     }else{
       this.cajaNull = false;

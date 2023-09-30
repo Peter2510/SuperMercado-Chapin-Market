@@ -7,21 +7,39 @@ import { LoginService } from 'src/app/login/login-service/login.service';
 @Component({
   selector: 'app-navegacion-bodega',
   templateUrl: './navegacion.component.html',
-  styleUrls: ['./navegacion.component.css']
+  styleUrls: ['./navegacion.component.css'],
 })
 export class NavegacionComponentBodega {
+  opcion: Number = 1;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,public loginService:LoginService) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    public loginService: LoginService
+  ) {}
 
-  public cerrarSesion(){
+  public cerrarSesion() {
     this.loginService.logOut();
     window.location.reload();
   }
 
+  public Validaropcion(opcionHallada: Number) {
+    switch (opcionHallada) {
+      case 1:
+        this.opcion = 1;
+        break;
+      case 2:
+        this.opcion = 2;
+        break;
+      case 3:
+        this.opcion = 3;
+        break;
+    }
+  }
 }

@@ -1,0 +1,50 @@
+<div class="grid-container">
+
+    <h1 class="mat-h1 text-center">Bodega</h1>
+  
+      <form class="form" (ngSubmit)="crearProducto()">
+          <h2 class="form__title">Agregar Producto</h2>
+  
+          <div class="form__container">
+              <div class="form__group">
+                  <input type="text" name="name" id="name" class="form__input" placeholder=" " [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}">
+                  <label for="name" class="form__label">Nombre del producto</label>
+                  <span class="form__line"></span>
+                  <div class="alert alert-warning mt-2" role="alert" *ngIf="nombreNull">
+                    Debes ingresar un nombre para el producto
+                  </div>
+              </div>
+
+              <div class="form__group">
+                <textarea type="text" name="description" id="description" class="form__input" placeholder=" " required [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+                <label for="description" class="form__label">Descripción:</label>
+                
+                <div class="alert alert-warning mt-2" role="alert" *ngIf="descripcionNull">
+                  Debes ingresar una descripcion para el producto
+                </div>
+            </div>
+                             
+                <div class="form__group">
+                  <input type="number" name="precio" id="precio" class="form__input" placeholder=" " required min="1" [(ngModel)]="precio" [ngModelOptions]="{standalone: true}">
+                  <label for="precio" class="form__label">Precio</label>
+                  <span class="form__line"></span>
+                  <div class="alert alert-warning mt-2" role="alert" *ngIf="precioNull">
+                    Debes asignar un precio para el producto
+                  </div>
+                </div>
+
+                <div class="form__group">
+                  <input type="number" name="cantidad" id="cantidad" class="form__input" placeholder=" " required min="1" [(ngModel)]="cantidad" [ngModelOptions]="{standalone: true}">
+                  <label for="cantidad" class="form__label">Cantidad a ingresar a bodega</label>
+                  <span class="form__line"></span>
+                  <div class="alert alert-warning mt-2" role="alert" *ngIf="cantidadNull">
+                    Debes asignar una cantidad entera para el producto a ingresar a bodega
+                  </div>
+                </div>
+   
+              <input type="submit" class="form__submit" name="login" value="Agregar">
+          </div>
+  
+      </form>
+  </div>
+  

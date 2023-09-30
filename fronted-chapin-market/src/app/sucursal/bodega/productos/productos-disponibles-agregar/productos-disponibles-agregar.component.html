@@ -1,0 +1,39 @@
+<div class="grid-container">
+
+    <h1 class="mat-h1 text-center">Bodega</h1>
+  
+      <form class="form" (ngSubmit)="agregarProducto()">
+
+        <h2 class="form__title">Productos disponibles para agregar a la sucursal</h2>
+
+        <div class="form__container">
+
+        <div class="form__group">
+          <p class=" text-start mt-5" >Productos disponibles</p>
+          <select class="form-select  mb-5" aria-label="Default select example" [(ngModel)]="codigoProducto" [ngModelOptions]="{standalone: true}">
+            <option value="0" disabled selected>Seleciona un producto</option>
+            <option *ngFor="let producto of productos" [value]="producto.codigo">{{producto.codigo}} - {{ producto.nombre }}</option>
+          </select>
+          <div class="alert alert-warning mt-2" role="alert" *ngIf="codigoProductoNull">
+            Debes selecionar un producto
+          </div>
+        </div>
+
+        <div class="form__group">
+           <input type="number" name="cantidad" id="cantidad" class="form__input" placeholder=" " required min="1" [(ngModel)]="cantidad" [ngModelOptions]="{standalone: true}">
+           <label for="cantidad" class="form__label">Cantidad a ingresar a bodega</label>
+           <span class="form__line"></span>
+           <div class="alert alert-warning mt-2" role="alert" *ngIf="cantidadNull">
+                 Debes asignar una cantidad entera para el producto a ingresar a bodega
+           </div>
+        </div>
+   
+        <input type="submit" class="form__submit" name="login" value="Agregar">
+
+      </div>
+      
+  
+      </form>
+
+  </div>
+  

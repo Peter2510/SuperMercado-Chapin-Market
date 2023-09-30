@@ -1,6 +1,11 @@
 <div class="grid-container">    
 
-    
+<p *ngIf="nit!=null;else CF">{{nit}}</p>    
+
+
+<ng-template #CF>
+    <p>CF</p>
+  </ng-template>
 
 
 </div>

@@ -5,9 +5,12 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <button class="btn m-md-2" (click)="Validaropcion(1)" >Inicio</button>
+      <hr class="w-25 mx-auto">
+      <h3 class="text-center"><b>Productos</b></h3>
+      <button class="btn m-md-2" (click)="Validaropcion(2)">Nuevo producto</button>
+      <button class="btn m-md-2" (click)="Validaropcion(3)">Disponibles para agregar</button>
+      <hr class="w-25 mx-auto">
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,6 +27,8 @@
       <button class="position-absolute top-2 mx-3 end-0 btn btn-outline-light" (click)="cerrarSesion()" >Cerrar sesion</button>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <app-dashboard-bodega></app-dashboard-bodega>
+    <app-dashboard-bodega *ngIf="opcion==1" ></app-dashboard-bodega>
+    <app-agregar-producto *ngIf="opcion==2"></app-agregar-producto>
+    <app-productos-disponibles-agregar *ngIf="opcion==3" ></app-productos-disponibles-agregar>
   </mat-sidenav-content>
 </mat-sidenav-container>

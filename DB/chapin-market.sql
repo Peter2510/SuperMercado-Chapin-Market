@@ -180,6 +180,36 @@ CREATE USER admin_chapin WITH PASSWORD '1chapinMarket2';
 --Asignando Rol
 GRANT adminDataBase TO admin_chapin;
 
+-- Otorgar permiso para utilizar la secuencia SERIAL
+
+GRANT USAGE ON SEQUENCE sucursales.sucursal_codigo_seq TO adminDataBase;
+GRANT SELECT ON SEQUENCE sucursales.sucursal_codigo_seq TO adminDataBase;
+GRANT UPDATE ON SEQUENCE sucursales.sucursal_codigo_seq TO adminDataBase;
+
+
+GRANT USAGE ON SEQUENCE  productos.producto_codigo_seq TO adminDataBase;
+GRANT SELECT ON SEQUENCE productos.producto_codigo_seq TO adminDataBase;
+GRANT UPDATE ON SEQUENCE productos.producto_codigo_seq TO adminDataBase;
+
+
+GRANT USAGE ON SEQUENCE  sucursales.bodega_codigo_seq TO adminDataBase;
+GRANT SELECT ON SEQUENCE sucursales.bodega_codigo_seq TO adminDataBase;
+GRANT UPDATE ON SEQUENCE sucursales.bodega_codigo_seq TO adminDataBase;
+
+
+GRANT USAGE ON SEQUENCE  empleados.empleado_codigo_seq TO adminDataBase;
+GRANT SELECT ON SEQUENCE empleados.empleado_codigo_seq TO adminDataBase;
+GRANT UPDATE ON SEQUENCE empleados.empleado_codigo_seq TO adminDataBase;
+
+
+GRANT USAGE ON SEQUENCE  ventas.venta_codigo_seq TO adminDataBase;
+GRANT SELECT ON SEQUENCE ventas.venta_codigo_seq TO adminDataBase;
+GRANT UPDATE ON SEQUENCE ventas.venta_codigo_seq TO adminDataBase;
+
+GRANT USAGE ON SEQUENCE  ventas.detalle_venta_codigo_seq TO adminDataBase;
+GRANT SELECT ON SEQUENCE ventas.detalle_venta_codigo_seq TO adminDataBase;
+GRANT UPDATE ON SEQUENCE ventas.detalle_venta_codigo_seq TO adminDataBase;
+
 
 --Insertando las sucursales
 INSERT INTO sucursales.sucursal (nombre) VALUES
@@ -601,6 +631,7 @@ INSERT INTO sucursales.bodega (codigo_producto,cantidad_producto,codigo_sucursal
 
 --INSERTANDO CLIENTES
 INSERT INTO clientes.cliente (nombre, nit, puntos,compras,tarjeta) VALUES 
+('Consumidor Final','CF',0,0,0),
 ('Eduardo Jose Lopez Aguirre','153698741',0,0,0),
 ('Fernanda Elisa Smith Lara','259048741',0,0,0),
 ('Melida Anahi Abreu Escobar','398745684',0,0,0),
@@ -610,6 +641,7 @@ INSERT INTO clientes.cliente (nombre, nit, puntos,compras,tarjeta) VALUES
 ('Brian Harold May ','156987468',0,0,0),
 ('Roger Meddows Taylor','459869874',0,0,0),
 ('John Richard Deacon','485963015',0,0,0);
+
 
 
 INSERT INTO sucursales.inventario (codigo_sucursal,numero_estante,numero_pasillo,codigo_producto,cantidad) VALUES 

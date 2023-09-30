@@ -24,4 +24,8 @@ export class NavegacionComponentCajero {
     window.location.reload();
   }
 
+  public irInicio(){
+    window.location.reload();
+  }
+
 }

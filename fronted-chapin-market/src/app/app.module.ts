@@ -46,6 +46,9 @@ import { MostarProductosBodegaComponent } from './sucursal/bodega/mostar-product
 import { ValidarComponent } from './cajero/venta/validar-cliente/validar/validar.component';
 import { CrearClienteComponent } from './cajero/venta/crear-cliente/crear-cliente.component';
 import { CrearVentaComponent } from './cajero/venta/crear-venta/crear-venta.component';
+import { EditarProductoComponent } from './sucursal/bodega/productos/editar-producto/editar-producto.component';
+import { AgregarProductoComponent } from './sucursal/bodega/productos/agregar-producto/agregar-producto.component';
+import { ProductosDisponiblesAgregarComponent } from './sucursal/bodega/productos/productos-disponibles-agregar/productos-disponibles-agregar.component';
 
 const routes: Route[] = [
   { path: "", redirectTo:'login',pathMatch:'full'},
@@ -87,7 +90,10 @@ const routes: Route[] = [
     MostarProductosBodegaComponent,
     ValidarComponent,
     CrearClienteComponent,
-    CrearVentaComponent
+    CrearVentaComponent,
+    EditarProductoComponent,
+    AgregarProductoComponent,
+    ProductosDisponiblesAgregarComponent
     
   ],
   imports: [

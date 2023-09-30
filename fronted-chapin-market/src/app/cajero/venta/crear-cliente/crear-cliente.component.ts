@@ -9,7 +9,7 @@ import { VentaService } from '../service/venta.service';
   styleUrls: ['./crear-cliente.component.css'],
 })
 export class CrearClienteComponent {
-  nombre: String;
+  nombre: String = "";
   tarjetaPuntos: boolean = false;
   @Input() nit: string;
   nombreNull = false;
@@ -44,7 +44,7 @@ export class CrearClienteComponent {
         this.ventaService.crearCliente(cliente).subscribe((confirmacion) => {
           if (confirmacion) {
             swal({
-              title: 'Se agrego correctamente al cliente',
+              title: 'Se agrego correctamente el cliente',
               type: 'success',
               confirmButtonText: 'Continuar',
             });
@@ -73,7 +73,7 @@ export class CrearClienteComponent {
   }
 
   validarCampos() {
-    if (this.nombre == null) {
+    if (this.nombre == "") {
       this.nombreNull = true;
     } else {
       this.nombreNull = false;
