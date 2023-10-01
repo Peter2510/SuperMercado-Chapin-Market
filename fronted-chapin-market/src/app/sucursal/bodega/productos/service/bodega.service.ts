@@ -70,9 +70,28 @@ export class BodegaService {
       cantidad_producto: cantidad_producto
     };
   
+    return this.httpClient.post(`${this.baseURL}/actualizar-stock-producto`, request);
+  }
+
+  obtenerProducto(codigoProducto:any): Observable<Producto>{
+    let cProducto:string = codigoProducto;
+    const params = new HttpParams()
+    .set('codigo', cProducto);
+
+    return this.httpClient.get<Producto>(`${this.baseURL}/obtener-producto`, { params });
+  }
+
+  actualizarProducto(codigo_producto: any, nombre:any, descripcion: any, precio:any) {
+    const request = {
+      codigo: codigo_producto,
+      nombre: nombre,
+      descripcion: descripcion,
+      precio:precio
+    };
+  
     console.log(request);
   
-    return this.httpClient.post(`${this.baseURL}/actualizar-stock-producto`, request);
+    return this.httpClient.post(`${this.baseURL}/actualizar-producto`, request);
   }
 
 

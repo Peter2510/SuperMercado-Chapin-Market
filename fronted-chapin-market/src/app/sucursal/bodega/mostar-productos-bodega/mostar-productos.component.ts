@@ -40,7 +40,7 @@ export class MostarProductosBodegaComponent implements OnInit{
 
     }else if(tipoAccion==2){
       
-      this.router.navigate(['editar-Producto'],this.codigoProducto);
+      this.router.navigate(['editar-Producto'],codigo);
 
 
     }

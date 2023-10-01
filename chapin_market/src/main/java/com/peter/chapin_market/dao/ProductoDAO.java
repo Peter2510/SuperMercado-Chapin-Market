@@ -120,4 +120,44 @@ public class ProductoDAO {
 		}
 
 	}
+	
+	
+	
+ 	public Boolean actualizarProducto(Producto producto) {
+ 		
+		Connection connection;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "UPDATE productos.producto SET nombre = ?, descripcion = ?, precio = ? WHERE codigo  = ?"; 
+			
+			PreparedStatement preST = connection.prepareStatement(query);
+			
+			preST.setString(1,producto.getNombre());
+			preST.setString(2,producto.getDescripcion());
+			preST.setDouble(3, producto.getPrecio());
+			preST.setInt(4,producto.getCodigo());
+			
+			int actualizado = preST.executeUpdate();
+			
+			if(actualizado>0) {			
+				connection.close();
+				return true;
+				
+			}else {
+				
+				connection.close();
+				return false;
+			}
+
+									
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return false;
+		}
+ 		
+ 	}
+	
 }

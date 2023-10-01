@@ -166,6 +166,20 @@ public class BodegaControlador {
 		
 	}
 	
+	@PostMapping(value = "/chapinMarket/actualizar-producto", produces = "application/json")
+	public ResponseEntity<Boolean> actualizarProducto(@RequestBody Producto request){
+				
+		boolean seActualizo = producto.actualizarProducto(request);
+		
+		if(seActualizo) {
+			return ResponseEntity.ok(seActualizo);
+		}else {
+			return ResponseEntity.ok(false);
+		}
+			
+		
+	}
+	
 	
 	
 
