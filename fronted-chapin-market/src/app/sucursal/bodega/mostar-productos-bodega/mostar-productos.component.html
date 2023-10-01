@@ -3,13 +3,14 @@
     <h1 class="text-center" *ngIf="sucursal=='2'" >Productos en la bodega de la sucursal norte</h1>
     <h1 class="text-center" *ngIf="sucursal=='3'" >Productos en la bodega de la sucursal sur</h1>
 
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered" *ngIf="tipoOpcion==0">
       <thead class="table table-dark">
         <tr>
           <th class="text-center" ></th>  
           <th class="text-center" >Sucursal</th>
           <th class="text-center" >Codigo del producto</th>
           <th class="text-center" >Nombre</th>
+          
           <th class="text-center" >Cantidad en bodega</th>
           <th class="text-center" >Accion</th>
         </tr>
@@ -22,10 +23,13 @@
               <td class="text-center" *ngIf="producto.codigo_sucursal==3">Sur</td>
               <td class="text-center" > {{producto.codigo_producto}}</td>
               <td class="text-center" >{{producto.nombre_producto}}</td>
+              
               <td class="text-center" >{{producto.cantidad_producto}}</td>
-              <td class="text-center"><button type="button" class="btn btn-outline-success btn-sm m-0 " value={{producto.codigo_producto}}>Incrementar Stock</button></td> 
+              <td class="text-center">
+                <button type="button" class="btn btn-outline-success btn-sm " (click)="accion(1,producto.codigo_producto)">Stock</button>
+                <button type="button" class="btn btn-outline-primary btn-sm ms-3" (click)="accion(2,producto.codigo_producto)">Editar</button>
+              </td> 
           </tr>
       </tbody>
     </table>
   </div>
-

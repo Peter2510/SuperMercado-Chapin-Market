@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import swal from 'sweetalert2';
 import { LoginService } from '../login-service/login.service';
 
 @Injectable({
@@ -21,6 +22,8 @@ export class CajeroGuard implements CanActivate {
 
       this.router.navigate(['login']);
       return false;
+
+
 
   }  
 }

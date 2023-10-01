@@ -13,7 +13,7 @@ export class AgregarProductoComponent {
   nombre:string = "";
   descripcion:String="";
   precio:Number;
-  cantidad:number;
+  cantidad:Number;
 
   nombreNull = false;
   descripcionNull = false;
@@ -45,7 +45,7 @@ export class AgregarProductoComponent {
 
             let bodega = {
               codigo_sucursal : this.login.getSucursal(),
-              cantidad: this.cantidad
+              cantidad_producto: this.cantidad
             }
 
             this.crearProductoService.crearProducto(producto,bodega).subscribe((confirmacion)=>{

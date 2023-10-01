@@ -12,7 +12,7 @@ export class CrearEmpleadoComponent {
   rol:Number;
   sucursal:Number;
   contrasenia:String;
-  caja:Number;
+  caja:Number =0;
   
   nombreNull = false;
   rolNull = false;
@@ -61,8 +61,15 @@ export class CrearEmpleadoComponent {
       this.constraseniaNull = false;
     }
 
-    if(this.tipoEmpleado == 1 && this.caja == null && Number.isInteger(this.caja)){
-      this.cajaNull = true;
+    if(this.tipoEmpleado == 1){
+
+      if(this.caja == 0  || !Number.isInteger(this.caja) || this.caja <0){
+        this.cajaNull = true;
+      }else{
+        this.cajaNull = false;
+      }
+
+      
     }else{
       this.cajaNull = false;
     }

@@ -63,6 +63,8 @@ public class BodegaDAO {
 
 		try {
 
+			System.out.println(bodega.toString());
+			
 			connection = dataSource.getConnection();
 			String query = "INSERT INTO sucursales.bodega (codigo_producto,cantidad_producto,codigo_sucursal) VALUES (?,?,?)" ; 
 			PreparedStatement preST = connection.prepareStatement(query);
@@ -136,6 +138,87 @@ public class BodegaDAO {
 			return null;
 		}
  	
+ 	}
+ 	
+ 	public Bodega productoBodegaSucursal(int codigo_producto, int codigo_sucursal) {
+		
+ 		Connection connection;
+		ResultSet resultSet;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "SELECT codigo_sucursal, codigo_producto, nombre, cantidad_producto, precio \r\n"
+					+ "FROM sucursales.bodega \r\n"
+					+ "INNER JOIN productos.producto ON productos.producto.codigo = sucursales.bodega.codigo_producto \r\n"
+					+ "WHERE sucursales.bodega.codigo_sucursal = ? \r\n"
+					+ "AND productos.producto.codigo = ?"; 
+			 
+			PreparedStatement preST = connection.prepareStatement(query);
+			preST.setInt(1,codigo_sucursal);
+			preST.setInt(2,codigo_producto);
+			
+
+			resultSet = preST.executeQuery();
+			
+			Bodega bodegaProducto = new Bodega();
+			
+			while (resultSet.next()) {
+								
+				bodegaProducto.setCodigo_producto(resultSet.getInt("codigo_producto"));
+				bodegaProducto.setCodigo_sucursal(resultSet.getInt("codigo_sucursal"));
+				bodegaProducto.setCantidad_producto(resultSet.getInt("cantidad_producto"));
+				bodegaProducto.setNombre_producto(resultSet.getString("nombre"));
+			}
+
+			resultSet.close();
+			connection.close();
+
+			return bodegaProducto;
+
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return null;
+		}
+ 	
+ 	}
+ 	
+ 	
+ 	public Boolean actualizarStockProducto(int codigo_producto, int codigo_sucursal, int cantidadProducto) {
+ 		
+		Connection connection;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "UPDATE sucursales.bodega SET cantidad_producto = ? WHERE codigo_producto  = ? AND codigo_sucursal = ?"; 
+			
+			PreparedStatement preST = connection.prepareStatement(query);
+			
+			preST.setInt(1,cantidadProducto);
+			preST.setInt(2,codigo_producto);
+			preST.setInt(3,codigo_sucursal);
+			
+			int actualizado = preST.executeUpdate();
+			
+			if(actualizado>0) {			
+				connection.close();
+				return true;
+				
+			}else {
+				
+				connection.close();
+				return false;
+			}
+
+									
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return false;
+		}
+ 		
  	}
 	
 		

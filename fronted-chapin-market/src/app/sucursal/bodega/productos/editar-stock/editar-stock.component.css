@@ -35,6 +35,11 @@
       position: relative;
       --color: #5757577e;
     }
+
+    .form__group__p {
+      position: relative;
+      
+    }
     
     .form__input {
       width: 100%;

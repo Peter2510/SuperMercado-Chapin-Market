@@ -35,6 +35,8 @@ export class BodegaService {
       bodega: bodega,
     };
 
+    console.log(request)
+
     return this.httpClient.post(`${this.baseURL}/crear-producto`, request);
   }
 
@@ -50,6 +52,27 @@ export class BodegaService {
 
     return this.httpClient.post(`${this.baseURL}/agregar-producto-sucursal`, bodega);
 
+  }
+
+  obtenerProductoBodega(codigoProducto:any,codigoSucursal:number): Observable<Bodega>{
+    let cProducto:string = codigoProducto;
+    const params = new HttpParams()
+    .set('codigo_producto', cProducto)
+    .set('codigo_sucursal', codigoSucursal);
+
+    return this.httpClient.get<Bodega>(`${this.baseURL}/obtener-producto-bodega`, { params });
+  }
+
+  actualizarStock(codigo_producto: any, codigo_sucursal: any, cantidad_producto: any) {
+    const request = {
+      codigo_producto: codigo_producto,
+      codigo_sucursal: codigo_sucursal,
+      cantidad_producto: cantidad_producto
+    };
+  
+    console.log(request);
+  
+    return this.httpClient.post(`${this.baseURL}/actualizar-stock-producto`, request);
   }
 
 

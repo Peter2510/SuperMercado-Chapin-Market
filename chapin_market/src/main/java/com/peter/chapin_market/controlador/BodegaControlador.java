@@ -16,6 +16,7 @@ import com.peter.chapin_market.dao.ProductoDAO;
 import com.peter.chapin_market.modelo.Bodega;
 import com.peter.chapin_market.modelo.Cliente;
 import com.peter.chapin_market.modelo.Producto;
+import com.peter.chapin_market.post_request.ActualizarStockRequest;
 import com.peter.chapin_market.post_request.BodegaRequest;
 import com.peter.chapin_market.post_request.IngresarProductoBodegaRequest;
 import com.peter.chapin_market.post_request.ProductoRequest;
@@ -47,10 +48,10 @@ public class BodegaControlador {
 	}
 
 	@GetMapping(value = "/chapinMarket/producto", produces = "application/json")
-	public ResponseEntity<Boolean> obtenerProducto(@RequestParam String nombre) {
+	public ResponseEntity<Boolean> exitesteProductoPorNombre(@RequestParam String nombre) {
 
 		// se obtienen los productos en bodega de una sucursal
-		Boolean productoHallado = producto.existeProducto(nombre);
+		Boolean productoHallado = producto.existeProductoPorNombre(nombre);
 
 		if (productoHallado != null) {
 
@@ -61,13 +62,11 @@ public class BodegaControlador {
 		}
 
 	}
-
+	
 	@PostMapping(value = "/chapinMarket/crear-producto", produces = "application/json")
 	public ResponseEntity<Boolean> crearProducto(@RequestBody BodegaRequest bodegaR) {
 
 		int codigoProducto = producto.agregarProducto(bodegaR.getProducto());
-		System.out.println("El id generado fue" + codigoProducto);
-
 		if (codigoProducto > 0) {
 
 			bodegaR.getBodega().setCodigo_producto(codigoProducto);
@@ -113,5 +112,61 @@ public class BodegaControlador {
 		}
 
 	}
+	
+	@GetMapping(value = "/chapinMarket/obtener-producto", produces = "application/json")
+	public ResponseEntity<Producto> obtenerProductoPorId(@RequestParam String codigo) {
+
+		// se obtienen los productos en bodega de una sucursal
+		Producto productoHallado = producto.obtenerProductoPorId(codigo);
+
+		if (productoHallado != null) {
+
+			return ResponseEntity.ok(productoHallado);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+
+	}
+	
+	//Se usa para mostrar el producto a editar el stock
+	@GetMapping(value = "/chapinMarket/obtener-producto-bodega", produces = "application/json")
+	public ResponseEntity<Bodega> obtenerProductoBodega(@RequestParam String codigo_producto, @RequestParam String codigo_sucursal) {
+
+		// se obtienen un producto en bodega de una sucursal
+		int codigoSucursal = Integer.parseInt(codigo_sucursal);
+		int codigoProducto = Integer.parseInt(codigo_producto);
+		Bodega productoHallado = bodega.productoBodegaSucursal(codigoProducto,codigoSucursal);
+
+		if (productoHallado != null) {
+
+			return ResponseEntity.ok(productoHallado);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+
+	}
+	
+	@PostMapping(value = "/chapinMarket/actualizar-stock-producto", produces = "application/json")
+	public ResponseEntity<Boolean> actualizarStockProducto(@RequestBody ActualizarStockRequest request){
+				
+        int codigoProducto =   Integer.parseInt(request.getCodigo_producto());
+        int codigoSucursal =   Integer.parseInt(request.getCodigo_sucursal());
+        int cantidadProducto = Integer.parseInt(request.getCantidad_producto());
+		
+		boolean seActualizo = bodega.actualizarStockProducto(codigoProducto, codigoSucursal, cantidadProducto);
+		
+		if(seActualizo) {
+			return ResponseEntity.ok(seActualizo);
+		}else {
+			return ResponseEntity.ok(false);
+		}
+		
+		
+	}
+	
+	
+	
 
 }

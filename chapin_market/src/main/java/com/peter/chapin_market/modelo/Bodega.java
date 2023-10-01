@@ -5,6 +5,7 @@ public class Bodega {
 	private int codigo_producto;
 	private int codigo_sucursal;
 	private String nombre_producto;
+	private String descripcion_producto;
 	private int cantidad_producto;
 	private double precio_unitario;
 
@@ -32,6 +33,14 @@ public class Bodega {
 		this.nombre_producto = nombre_producto;
 	}
 	
+	public String getDescripcion_producto() {
+		return descripcion_producto;
+	}
+	
+	public void setDescripcion_producto(String descripcion_producto) {
+		this.descripcion_producto = descripcion_producto;
+	}
+	
 	public int getCantidad_producto() {
 		return cantidad_producto;
 	}
@@ -51,8 +60,9 @@ public class Bodega {
 	@Override
 	public String toString() {
 		return "Bodega [codigo_producto=" + codigo_producto + ", codigo_sucursal=" + codigo_sucursal
-				+ ", nombre_producto=" + nombre_producto + ", cantidad_producto=" + cantidad_producto
-				+ ", precio_unitario=" + precio_unitario + "]";
+				+ ", nombre_producto=" + nombre_producto + ", descripcion_producto=" + descripcion_producto
+				+ ", cantidad_producto=" + cantidad_producto + ", precio_unitario=" + precio_unitario + "]";
 	}
+		
 		
 }

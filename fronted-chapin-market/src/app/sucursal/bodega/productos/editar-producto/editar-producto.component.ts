@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class EditarProductoComponent {
 
+  nombre:String;
+  precio:Number;
+  descripcion:Number;
+  cantidad:Number;
+
+  nombreNull = false;
+  precioNull = false;
+  descripcionNull = false;
+  cantidadNull = false;
+
+  editarProducto(){
+    
+  }
+
 }

@@ -25,7 +25,7 @@ export class ValidarComponent {
 
   public validarCliente() {
 
-    if (this.nit == null || this.nit == 'cf' || this.nit == '') {
+    if (this.nit == null || this.nit == 'cf' || this.nit == '' || parseInt(this.nit)<0) {
       
       //GENERAR VENTA
       this.crearVenta=true;

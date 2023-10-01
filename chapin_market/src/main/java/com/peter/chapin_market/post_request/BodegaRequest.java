@@ -22,5 +22,11 @@ public class BodegaRequest {
     public void setBodega(Bodega bodega) {
 		this.bodega = bodega;
 	}
+
+	@Override
+	public String toString() {
+		return "BodegaRequest [producto=" + producto + ", bodega=" + bodega + "]";
+	}
+        
     
 }

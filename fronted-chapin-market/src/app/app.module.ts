@@ -49,6 +49,7 @@ import { CrearVentaComponent } from './cajero/venta/crear-venta/crear-venta.comp
 import { EditarProductoComponent } from './sucursal/bodega/productos/editar-producto/editar-producto.component';
 import { AgregarProductoComponent } from './sucursal/bodega/productos/agregar-producto/agregar-producto.component';
 import { ProductosDisponiblesAgregarComponent } from './sucursal/bodega/productos/productos-disponibles-agregar/productos-disponibles-agregar.component';
+import { EditarStockComponent } from './sucursal/bodega/productos/editar-stock/editar-stock.component';
 
 const routes: Route[] = [
   { path: "", redirectTo:'login',pathMatch:'full'},
@@ -57,6 +58,8 @@ const routes: Route[] = [
   { path: "bodega", component:BodegaComponent,canActivate:[BodegaGuard]},
   { path: "inventario", component:InventarioComponent,canActivate:[InventarioGuard]},
   { path: "cajero", component:VentaComponent,canActivate:[CajeroGuard]},
+  { path: "editar-Producto", component:EditarProductoComponent,canActivate:[BodegaGuard]},
+  { path: "stock-Producto", component:EditarStockComponent,canActivate:[BodegaGuard]},
   { path: "**", redirectTo: "login" }
   
 ];
@@ -93,7 +96,8 @@ const routes: Route[] = [
     CrearVentaComponent,
     EditarProductoComponent,
     AgregarProductoComponent,
-    ProductosDisponiblesAgregarComponent
+    ProductosDisponiblesAgregarComponent,
+    EditarStockComponent
     
   ],
   imports: [

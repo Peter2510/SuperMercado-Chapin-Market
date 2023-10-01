@@ -17,7 +17,7 @@
               <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [(ngModel)]="loginData.contrasenia" [ngModelOptions]="{standalone: true}">
               <label for="floatingPassword">Contraseña</label>
               <div class="alert alert-warning mt-2" role="alert" *ngIf="contraseniaNull">
-                Debes ingresar una contrasenia
+                Debes ingresar una contraseña
               </div>
               <div class="alert alert-warning mt-2" role="alert" *ngIf="!credencialesIncorrectas">
                 Credenciales incorectas

@@ -58,8 +58,6 @@ export class CrearClienteComponent {
               window.location.reload();
             }
             )
-
-            
           }
         });
       } else {
@@ -78,7 +76,7 @@ export class CrearClienteComponent {
     } else {
       this.nombreNull = false;
     }
-    if (this.nit == null) {
+    if (this.nit == null || parseInt(this.nit)<0) {
       this.nitNull = true;
     } else {
       this.nitNull = false;
