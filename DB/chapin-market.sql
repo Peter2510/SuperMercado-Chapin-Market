@@ -52,13 +52,15 @@ CREATE SCHEMA empleados;
 --Tabla empleado
 CREATE TABLE empleados.empleado(
     codigo SERIAL NOT NULL,
+    usuario VARCHAR(25) NOT NULL,
     nombre VARCHAR(120) NOT NULL,
     rol INT NOT NULL,
     codigo_sucursal SERIAL NOT NULL,
     contrasenia VARCHAR(50) NOT NULL,
     caja INT,
     FOREIGN KEY (codigo_sucursal) REFERENCES sucursales.sucursal(codigo),
-    PRIMARY KEY(codigo)
+    PRIMARY KEY(usuario),
+    UNIQUE(codigo)
 );
 
 --Esquema clientes
@@ -219,49 +221,49 @@ INSERT INTO sucursales.sucursal (nombre) VALUES
 ('Sur');
 
 --Insertando cajeros
-INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia,caja) VALUES
+INSERT INTO empleados.empleado(usuario,nombre,rol,codigo_sucursal,contrasenia,caja) VALUES
 --cajeros
-('Luis Alberto Villatoro Cano','1','1','123a',1),
-('Jose Carlos Lopez Mainz','1','1','123a',2),
-('Olga Estela Siguenza Lopez','1','1','123a',3),
-('Herson Daniel Hernandez Dante','1','1','123a',4),
-('Jessie Torres Marcos','1','1','123a',5),
-('Marta Patricia Ortega Arcos','1','1','123a',6),
-('Edgar Guillermo Lara Valencia','1','2','123a',1),
-('Monica Karina Tovar Solorzano','1','2','123a',2),
-('Jose Andres Cardenas Molina','1','2','123a',3),
-('Hilda Yohana Mendonza Navarro','1','2','123a',4),
-('Maria Fernanda Franco Valarez','1','2','123a',5),
-('Ana del Rocio Rios Rosales','1','2','123a',6),
-('Fernando Roberto Segovia Garcia','1','3','123a',1),
-('Cecilia Elizabeth Suarez Moreira','1','3','123a',2),
-('Ericka Paola Prado Ortiz','1','3','123a',3),
-('Xavier German Yanez Cruz','1','3','123a',4),
-('Pablo Efren Navarro Vera','1','3','123a',5),
-('Linda Azucena Luna Veliz','1','3','123a',6);
+('LuisV','Luis Alberto Villatoro Cano','1','1','123a',1),
+('JoseL','Jose Carlos Lopez Mainz','1','1','123a',2),
+('OlgaS','Olga Estela Siguenza Lopez','1','1','123a',3),
+('HersonH','Herson Daniel Hernandez Dante','1','1','123a',4),
+('JessieT','Jessie Torres Marcos','1','1','123a',5),
+('MartaP','Marta Patricia Ortega Arcos','1','1','123a',6),
+('EdgarG','Edgar Guillermo Lara Valencia','1','2','123a',1),
+('MonicaT','Monica Karina Solorzano','1','2','123a',2),
+('JoseC','Jose Andres Cardenas Molina','1','2','123a',3),
+('HildaM','Hilda Yohana Mendonza Navarro','1','2','123a',4),
+('MariaFF','Maria Fernanda Franco Valarez','1','2','123a',5),
+('AnaR','Ana del Rocio Rios Rosales','1','2','123a',6),
+('FerSe','Fernando Roberto Segovia Garcia','1','3','123a',1),
+('CeciS','Cecilia Elizabeth Suarez Moreira','1','3','123a',2),
+('EriP','Ericka Paola Prado Ortiz','1','3','123a',3),
+('XavYa','Xavier German Yanez Cruz','1','3','123a',4),
+('PaNav','Pablo Efren Navarro Vera','1','3','123a',5),
+('LiLu','Linda Azucena Luna Veliz','1','3','123a',6);
 
 --Insertando bodega
-INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia) VALUES
-('Luis Ernesto Gutierrez Lopez','2','1','123b'),
-('Ernesto David  Lucero Gramajo','2','2','123b'),
-('Fernanda Abigail Gonzalez Lima','2','3','123b');
+INSERT INTO empleados.empleado(usuario,nombre,rol,codigo_sucursal,contrasenia) VALUES
+('LuiGui','Luis Ernesto Gutierrez Lopez','2','1','123b'),
+('ErneL','Ernesto David  Lucero Gramajo','2','2','123b'),
+('FerGo','Fernanda Abigail Gonzalez Lima','2','3','123b');
 --Insertando Inventario
-INSERT INTO empleados.empleado(nombre,rol,codigo_sucursal,contrasenia) VALUES
-('Emma Johnson', '3', '1','123c'),
-('Liam Smith', '3', '1','123c'),
-('Olivia Brown', '3', '1','123c'),
-('Noah Davis', '3', '1','123c'),
-('Ava Miller', '3', '2','123c'),
-('Sophia Wilson', '3', '2','123c'),
-('Isabella Moore', '3', '2','123c'),
-('Mia Taylor', '3', '2','123c'),
-('James Anderson', '3', '3','123c'),
-('Oliver Jackson', '3', '3','123c'),
-('Benjamin Clark', '3', '3','123c'),
-('Lucas White', '3', '3','123c');
+INSERT INTO empleados.empleado(usuario,nombre,rol,codigo_sucursal,contrasenia) VALUES
+('EmmaJo','Emma Ortega', '3', '1','123c'),
+('LiS','Liam Smith', '3', '1','123c'),
+('OliBr','Olivia Mendonza', '3', '1','123c'),
+('NoDa','Noah Davis', '3', '1','123c'),
+('AvaG','Ava Gutierrez', '3', '2','123c'),
+('SoWil','Sophia Wilson', '3', '2','123c'),
+('IsaOr','Isabella Ortiz', '3', '2','123c'),
+('MiaV','Mia Veliz', '3', '2','123c'),
+('Jand','James Anderson', '3', '3','123c'),
+('OlivR','Oliver Rios', '3', '3','123c'),
+('BenjaS','Benjamin Solorzano', '3', '3','123c'),
+('LucMol','Lucas Molina', '3', '3','123c');
 --Administrador
-INSERT INTO empleados.empleado (nombre,rol,codigo_sucursal,contrasenia) VALUES
-('Virginia Azucena Loarca Elizalde','4','1','123d');
+INSERT INTO empleados.empleado (usuario,nombre,rol,codigo_sucursal,contrasenia) VALUES
+('ViEli','Virginia Azucena Loarca Elizalde','4','1','123d');
 
 --Insertando Productos
 INSERT INTO productos.producto (nombre, descripcion, precio)
@@ -643,8 +645,7 @@ INSERT INTO clientes.cliente (nombre, nit, puntos,compras,tarjeta) VALUES
 ('Roger Meddows Taylor','459869874',0,0,0),
 ('John Richard Deacon','485963015',0,0,0);
 
-
-
+--INSERTANDO EN INVENTARIO
 INSERT INTO sucursales.inventario (codigo_sucursal,numero_estante,numero_pasillo,codigo_producto,cantidad) VALUES 
 (1,1,1,1,45),
 (1,2,1,2,18),
