@@ -23,8 +23,8 @@ CREATE TABLE productos.producto(
     PRIMARY KEY(codigo)
 );
 
---Tabla inventario
-CREATE TABLE sucursales.inventario(
+-- Tabla inventario
+CREATE TABLE sucursales.inventario (
     numero_estante INT NOT NULL,
     numero_pasillo INT NOT NULL,
     codigo_producto SERIAL NOT NULL,
@@ -32,7 +32,8 @@ CREATE TABLE sucursales.inventario(
     cantidad INT NOT NULL,
     FOREIGN KEY (codigo_sucursal) REFERENCES sucursales.sucursal(codigo),
     FOREIGN KEY (codigo_producto) REFERENCES productos.producto(codigo),
-    PRIMARY KEY(codigo_sucursal,codigo_producto,numero_estante,numero_pasillo)
+    PRIMARY KEY (codigo_sucursal, codigo_producto, numero_estante, numero_pasillo),
+    UNIQUE (codigo_sucursal,numero_estante, numero_pasillo) -- Restricción numero_estante y numero_pasillo no se puede repetir
 );
 
 --Tabla bodega

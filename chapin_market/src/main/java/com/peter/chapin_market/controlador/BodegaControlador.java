@@ -62,7 +62,7 @@ public class BodegaControlador {
 		}
 
 	}
-	
+
 	@PostMapping(value = "/chapinMarket/crear-producto", produces = "application/json")
 	public ResponseEntity<Boolean> crearProducto(@RequestBody BodegaRequest bodegaR) {
 
@@ -112,7 +112,7 @@ public class BodegaControlador {
 		}
 
 	}
-	
+
 	@GetMapping(value = "/chapinMarket/obtener-producto", produces = "application/json")
 	public ResponseEntity<Producto> obtenerProductoPorId(@RequestParam String codigo) {
 
@@ -128,15 +128,16 @@ public class BodegaControlador {
 		}
 
 	}
-	
-	//Se usa para mostrar el producto a editar el stock
+
+	// Se usa para mostrar el producto a editar el stock
 	@GetMapping(value = "/chapinMarket/obtener-producto-bodega", produces = "application/json")
-	public ResponseEntity<Bodega> obtenerProductoBodega(@RequestParam String codigo_producto, @RequestParam String codigo_sucursal) {
+	public ResponseEntity<Bodega> obtenerProductoBodega(@RequestParam String codigo_producto,
+			@RequestParam String codigo_sucursal) {
 
 		// se obtienen un producto en bodega de una sucursal
 		int codigoSucursal = Integer.parseInt(codigo_sucursal);
 		int codigoProducto = Integer.parseInt(codigo_producto);
-		Bodega productoHallado = bodega.productoBodegaSucursal(codigoProducto,codigoSucursal);
+		Bodega productoHallado = bodega.productoBodegaSucursal(codigoProducto, codigoSucursal);
 
 		if (productoHallado != null) {
 
@@ -147,40 +148,48 @@ public class BodegaControlador {
 		}
 
 	}
-	
+
 	@PostMapping(value = "/chapinMarket/actualizar-stock-producto", produces = "application/json")
-	public ResponseEntity<Boolean> actualizarStockProducto(@RequestBody ActualizarStockRequest request){
-				
-        int codigoProducto =   Integer.parseInt(request.getCodigo_producto());
-        int codigoSucursal =   Integer.parseInt(request.getCodigo_sucursal());
-        int cantidadProducto = Integer.parseInt(request.getCantidad_producto());
-		
+	public ResponseEntity<Boolean> actualizarStockProducto(@RequestBody ActualizarStockRequest request) {
+
+		int codigoProducto = Integer.parseInt(request.getCodigo_producto());
+		int codigoSucursal = Integer.parseInt(request.getCodigo_sucursal());
+		int cantidadProducto = Integer.parseInt(request.getCantidad_producto());
+
 		boolean seActualizo = bodega.actualizarStockProducto(codigoProducto, codigoSucursal, cantidadProducto);
-		
-		if(seActualizo) {
+
+		if (seActualizo) {
 			return ResponseEntity.ok(seActualizo);
-		}else {
+		} else {
 			return ResponseEntity.ok(false);
 		}
-		
-		
+
 	}
-	
+
 	@PostMapping(value = "/chapinMarket/actualizar-producto", produces = "application/json")
-	public ResponseEntity<Boolean> actualizarProducto(@RequestBody Producto request){
-				
+	public ResponseEntity<Boolean> actualizarProducto(@RequestBody Producto request) {
+
 		boolean seActualizo = producto.actualizarProducto(request);
-		
-		if(seActualizo) {
+
+		if (seActualizo) {
 			return ResponseEntity.ok(seActualizo);
-		}else {
+		} else {
 			return ResponseEntity.ok(false);
 		}
-			
-		
+
 	}
+
+	@GetMapping(value = "/chapinMarket/cantidad-en-bodega", produces = "application/json")
+	public ResponseEntity<Integer> cantidadProductoEnBodega(@RequestParam String codigo_sucursal, @RequestParam String codigo_producto) {
+
+		int codigo_sucursalR = Integer.parseInt(codigo_sucursal);
+		int codigo_productoR = Integer.parseInt(codigo_producto);
 	
-	
-	
+		// se obtienen la cantidad de producto en la bodega
+		int cantidadEnBoodega = bodega.cantidadStockProducto(codigo_productoR, codigo_sucursalR);
+		
+		return ResponseEntity.ok(cantidadEnBoodega);
+
+	}
 
 }

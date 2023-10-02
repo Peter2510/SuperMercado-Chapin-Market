@@ -50,6 +50,9 @@ import { EditarProductoComponent } from './sucursal/bodega/productos/editar-prod
 import { AgregarProductoComponent } from './sucursal/bodega/productos/agregar-producto/agregar-producto.component';
 import { ProductosDisponiblesAgregarComponent } from './sucursal/bodega/productos/productos-disponibles-agregar/productos-disponibles-agregar.component';
 import { EditarStockComponent } from './sucursal/bodega/productos/editar-stock/editar-stock.component';
+import { EditarInventarioComponent } from './sucursal/inventario/productos/editar-inventario/editar-inventario.component';
+import { DisponiblesAgregarInventarioComponent } from './sucursal/inventario/productos/disponibles-agregar-inventario/disponibles-agregar-inventario.component';
+
 
 const routes: Route[] = [
   { path: "", redirectTo:'login',pathMatch:'full'},
@@ -97,7 +100,9 @@ const routes: Route[] = [
     EditarProductoComponent,
     AgregarProductoComponent,
     ProductosDisponiblesAgregarComponent,
-    EditarStockComponent
+    EditarStockComponent,
+    EditarInventarioComponent,
+    DisponiblesAgregarInventarioComponent
     
   ],
   imports: [

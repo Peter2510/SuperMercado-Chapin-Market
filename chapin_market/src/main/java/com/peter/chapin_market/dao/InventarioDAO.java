@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.peter.chapin_market.modelo.Inventario;
+import com.peter.chapin_market.modelo.Producto;
 
 
 @Service
@@ -17,6 +18,10 @@ public class InventarioDAO {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private BodegaDAO bodega;	
+	
 	
 	public List<Inventario> obtenerInventario(int codigoSucursal) {
 		
@@ -74,6 +79,86 @@ public class InventarioDAO {
 		
 		
 	}
+	
+ 	public List<Producto> productosDisponiblesParaAgregar(int codigo_sucursal) {
+		
+ 		List<Producto> productos = new ArrayList<Producto>();
+		Connection connection;
+		ResultSet resultSet;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "SELECT p.* FROM productos.producto p WHERE p.codigo NOT IN ( SELECT pi.codigo_producto FROM sucursales.inventario pi WHERE pi.codigo_sucursal = ?)";
+			
+			PreparedStatement preST = connection.prepareStatement(query);
+			preST.setInt(1,codigo_sucursal);
+			resultSet = preST.executeQuery();
+			
+
+			while (resultSet.next()) {
+				Producto producto = new Producto();
+				
+				producto.setCodigo(resultSet.getInt("codigo"));
+				producto.setDescripcion(resultSet.getString("descripcion"));
+				producto.setNombre(resultSet.getString("nombre"));
+				producto.setPrecio(resultSet.getDouble("precio"));
+				productos.add(producto);
+			}
+
+			resultSet.close();
+			connection.close();
+
+			return productos;
+
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return null;
+		}
+ 	
+ 	}
+ 	
+ 	public Boolean agregarProductoInventario(Inventario inventario) {
+ 		
+		Connection connection;
+
+		try {
+
+			connection = dataSource.getConnection();
+			
+			bodega.descargarStockProducto(inventario.getCodigo_producto(), inventario.getCodigo_sucursal(), inventario.getCantidad_producto_inventario());
+			String queryInventario = "INSERT INTO sucursales.inventario (codigo_sucursal,numero_estante,numero_pasillo,codigo_producto,cantidad) VALUES (?,?,?,?,?)"; 
+			 
+			PreparedStatement preST = connection.prepareStatement(queryInventario);
+			
+			preST.setInt(1,inventario.getCodigo_sucursal());
+			preST.setInt(2,inventario.getNumero_estante());
+			preST.setInt(3, inventario.getNumero_pasillo());
+			preST.setInt(4,inventario.getCodigo_producto());
+			preST.setInt(5, inventario.getCantidad_producto_inventario());
+			
+			
+			int actualizado = preST.executeUpdate();
+			
+			if(actualizado>0) {			
+				connection.close();
+				return true;
+				
+			}else {
+				
+				connection.close();
+				return false;
+			}
+
+									
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return false;
+		}
+ 		
+ 	}
 	
 	
 }

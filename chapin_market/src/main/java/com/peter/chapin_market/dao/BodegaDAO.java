@@ -220,7 +220,79 @@ public class BodegaDAO {
 		}
  		
  	}
+ 	
+ 	public int cantidadStockProducto(int codigo_producto,int codigo_sucursal) {
+ 		
+ 		Connection connection;
+ 		ResultSet resultSet;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "SELECT cantidad_producto FROM sucursales.bodega WHERE codigo_producto  = ? AND codigo_sucursal = ?"; 
+			
+			PreparedStatement preST = connection.prepareStatement(query);
+			
+			preST.setInt(1,codigo_producto);
+			preST.setInt(2,codigo_sucursal);
+			
+			resultSet = preST.executeQuery();
+			
+			int cantidadProducto = 0;
+			
+			while (resultSet.next()) {
+				
+				cantidadProducto = resultSet.getInt("cantidad_producto");
+			
+			}
+
+			resultSet.close();
+			connection.close();
+
+			return cantidadProducto;
+									
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return 0;
+		}
+ 	}
 	
+ 	
+ 	public boolean descargarStockProducto(int codigo_producto,int codigo_sucursal,int cantidadDescarga) {
+ 		
+ 		Connection connection;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "UPDATE sucursales.bodega SET cantidad_producto = ? WHERE codigo_producto  = ? AND codigo_sucursal = ?"; 
+			
+			PreparedStatement preST = connection.prepareStatement(query);
+			
+			preST.setInt(1,cantidadStockProducto(codigo_producto, codigo_sucursal)-cantidadDescarga);
+			preST.setInt(2,codigo_producto);
+			preST.setInt(3,codigo_sucursal);
+			
+			
+			int actualizado = preST.executeUpdate();
+			
+			if(actualizado>0) {			
+				connection.close();
+				return true;
+				
+			}else {
+				connection.close();
+				return false;
+			}
+									
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return false;
+		}
+ 	}
+ 	
 		
 	
 }

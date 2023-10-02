@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.peter.chapin_market.dao.InventarioDAO;
+import com.peter.chapin_market.modelo.Bodega;
 import com.peter.chapin_market.modelo.Inventario;
+import com.peter.chapin_market.modelo.Producto;
 import com.peter.chapin_market.post_request.InventarioRequest;
 
 @RestController
@@ -35,6 +38,43 @@ public class InventarioControlador {
 		}
 				
 	}
+	
+	@GetMapping(value = "/chapinMarket/disponibles-inventario", produces = "application/json")
+	public ResponseEntity<List<Producto>> productosDisponiblesParaAgregar(@RequestParam String sucursal) {
+
+		// se obtienen los productos en bodega disponibles para agregar al inventario de una sucursal
+		int codigo = Integer.parseInt(sucursal);
+
+		List<Producto> productos = inventario.productosDisponiblesParaAgregar(codigo);
+
+		if (productos != null) {
+
+			return ResponseEntity.ok(productos);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+
+	}
+	
+	@PostMapping(value = "/chapinMarket/agregar-producto-inventario", produces = "application/json")
+	public ResponseEntity<Boolean> agregarProductoBodega(@RequestBody Inventario inventarioR) {
+
+		boolean seAgregoAbodega = inventario.agregarProductoInventario(inventarioR);
+
+		if (seAgregoAbodega) {
+
+			return ResponseEntity.ok(seAgregoAbodega);
+
+		} else {
+			return ResponseEntity.ok(false);
+		}
+
+	}
+	
+	
+	
+	
 	
 	
 }

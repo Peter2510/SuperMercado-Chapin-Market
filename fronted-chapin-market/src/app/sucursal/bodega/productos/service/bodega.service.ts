@@ -35,8 +35,6 @@ export class BodegaService {
       bodega: bodega,
     };
 
-    console.log(request)
-
     return this.httpClient.post(`${this.baseURL}/crear-producto`, request);
   }
 
@@ -88,8 +86,6 @@ export class BodegaService {
       descripcion: descripcion,
       precio:precio
     };
-  
-    console.log(request);
   
     return this.httpClient.post(`${this.baseURL}/actualizar-producto`, request);
   }
