@@ -48,6 +48,27 @@ export class InventarioService {
       return this.httpClient.get<Number>(`${this.baseURL}/cantidad-en-bodega`, { params});
 
     }
-  
 
+    obtenerProductoInventario(codigoProducto:any,codigoSucursal:number): Observable<Inventario>{
+      let cProducto:string = codigoProducto;
+      const params = new HttpParams()
+      .set('codigo_producto', cProducto)
+      .set('codigo_sucursal', codigoSucursal);
+  
+      return this.httpClient.get<Inventario>(`${this.baseURL}/obtener-producto-inventario`, { params });
+    }
+
+    actualizarInventario(codigo_producto: any, codigo_sucursal: any, cantidad_producto_inventario:any, cantidad_producto_bodega:any) {
+      const request = {
+        codigo_producto: codigo_producto,
+        codigo_sucursal: codigo_sucursal,
+        cantidad_producto_inventario: cantidad_producto_inventario,
+        cantidad_producto_bodega: cantidad_producto_bodega
+      };
+
+      console.log(request);
+    
+      return this.httpClient.post(`${this.baseURL}/actualizar-inventario-producto`, request);
+    }
+ 
 }

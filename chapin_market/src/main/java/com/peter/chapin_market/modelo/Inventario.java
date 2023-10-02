@@ -65,5 +65,13 @@ public class Inventario {
 	public void setCantidad_producto_bodega(int cantidad_producto_bodega) {
 		this.cantidad_producto_bodega = cantidad_producto_bodega;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Inventario [codigo_sucursal=" + codigo_sucursal + ", codigo_producto=" + codigo_producto
+				+ ", nombre_producto=" + nombre_producto + ", numero_pasillo=" + numero_pasillo + ", numero_estante="
+				+ numero_estante + ", cantidad_producto_inventario=" + cantidad_producto_inventario
+				+ ", cantidad_producto_bodega=" + cantidad_producto_bodega + "]";
+	}
+		
 }

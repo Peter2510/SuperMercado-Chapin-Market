@@ -29,7 +29,7 @@
               <td class="text-center" >{{producto.numero_estante}}</td>
               <td class="text-center" >{{producto.cantidad_producto_inventario}}</td>
               <td class="text-center" >{{producto.cantidad_producto_bodega}}</td>
-              <td><button type="button" class="btn btn-outline-success btn-sm ">Stock Inventario</button></td>
+              <td ><button type="button" class="btn btn-outline-primary btn-sm ms-3" (click)="accion(1,producto.codigo_producto,producto.cantidad_producto_bodega)">Editar cantidad</button></td>
           </tr>
       </tbody>
     </table>

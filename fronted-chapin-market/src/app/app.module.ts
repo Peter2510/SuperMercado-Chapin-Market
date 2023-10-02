@@ -63,6 +63,7 @@ const routes: Route[] = [
   { path: "cajero", component:VentaComponent,canActivate:[CajeroGuard]},
   { path: "editar-Producto", component:EditarProductoComponent,canActivate:[BodegaGuard]},
   { path: "stock-Producto", component:EditarStockComponent,canActivate:[BodegaGuard]},
+  { path: "inventario-Producto", component:EditarInventarioComponent,canActivate:[InventarioGuard]},
   { path: "**", redirectTo: "login" }
   
 ];

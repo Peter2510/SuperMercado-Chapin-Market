@@ -9,6 +9,8 @@ import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.peter.chapin_market.modelo.Bodega;
 import com.peter.chapin_market.modelo.Inventario;
 import com.peter.chapin_market.modelo.Producto;
 
@@ -138,6 +140,89 @@ public class InventarioDAO {
 			preST.setInt(4,inventario.getCodigo_producto());
 			preST.setInt(5, inventario.getCantidad_producto_inventario());
 			
+			
+			int actualizado = preST.executeUpdate();
+			
+			if(actualizado>0) {			
+				connection.close();
+				return true;
+				
+			}else {
+				
+				connection.close();
+				return false;
+			}
+
+									
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return false;
+		}
+ 		
+ 	}
+ 	
+ 	public Inventario productoInventarioSucursal(int codigo_producto, int codigo_sucursal) {
+		
+ 		Connection connection;
+		ResultSet resultSet;
+
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "SELECT codigo_sucursal, codigo_producto, nombre, cantidad\r\n"
+					+ "FROM sucursales.inventario\r\n"
+					+ "INNER JOIN productos.producto ON productos.producto.codigo = sucursales.inventario.codigo_producto\r\n"
+					+ "WHERE sucursales.inventario.codigo_sucursal = ?\r\n"
+					+ "AND productos.producto.codigo = ?"; 
+			 
+			PreparedStatement preST = connection.prepareStatement(query);
+			preST.setInt(1,codigo_sucursal);
+			preST.setInt(2,codigo_producto);
+			
+			resultSet = preST.executeQuery();
+			
+			Inventario inventarioProducto = new Inventario();
+			
+			while (resultSet.next()) {
+								
+				inventarioProducto.setCodigo_producto(resultSet.getInt("codigo_producto"));
+				inventarioProducto.setCodigo_sucursal(resultSet.getInt("codigo_sucursal"));
+				inventarioProducto.setCantidad_producto_inventario(resultSet.getInt("cantidad"));
+				inventarioProducto.setNombre_producto(resultSet.getString("nombre"));
+			}
+
+			resultSet.close();
+			connection.close();
+
+			return inventarioProducto;
+
+		} catch (SQLException e) {
+
+			System.out.print(e);
+			return null;
+		}
+ 	
+ 	}
+ 	
+ 	public Boolean actualizarInventarioProducto(Inventario inventario) {
+ 		
+		Connection connection;
+		
+		System.out.println(inventario.toString());
+
+		try {
+
+			connection = dataSource.getConnection();
+
+			bodega.descargarStockProducto(inventario.getCodigo_producto(), inventario.getCodigo_sucursal(), inventario.getCantidad_producto_bodega());
+			String query = "UPDATE sucursales.inventario SET cantidad = ? WHERE codigo_producto  = ? AND codigo_sucursal = ?"; 
+			
+			PreparedStatement preST = connection.prepareStatement(query);
+			
+			preST.setInt(1,inventario.getCantidad_producto_inventario());
+			preST.setInt(2,inventario.getCodigo_producto());
+			preST.setInt(3,inventario.getCodigo_sucursal());
 			
 			int actualizado = preST.executeUpdate();
 			

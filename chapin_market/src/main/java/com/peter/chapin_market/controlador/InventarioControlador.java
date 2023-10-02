@@ -15,6 +15,7 @@ import com.peter.chapin_market.dao.InventarioDAO;
 import com.peter.chapin_market.modelo.Bodega;
 import com.peter.chapin_market.modelo.Inventario;
 import com.peter.chapin_market.modelo.Producto;
+import com.peter.chapin_market.post_request.ActualizarStockRequest;
 import com.peter.chapin_market.post_request.InventarioRequest;
 
 @RestController
@@ -66,6 +67,40 @@ public class InventarioControlador {
 
 			return ResponseEntity.ok(seAgregoAbodega);
 
+		} else {
+			return ResponseEntity.ok(false);
+		}
+
+	}
+	
+	// Se usa para mostrar el producto a editar el stock
+	@GetMapping(value = "/chapinMarket/obtener-producto-inventario", produces = "application/json")
+	public ResponseEntity<Inventario> obtenerProductoBodega(@RequestParam String codigo_producto,
+			@RequestParam String codigo_sucursal) {
+
+		// se obtienen un producto en inventario de una sucursal
+		int codigoSucursal = Integer.parseInt(codigo_sucursal);
+		int codigoProducto = Integer.parseInt(codigo_producto);
+		Inventario productoHallado = inventario.productoInventarioSucursal(codigoProducto, codigoSucursal);
+
+		if (productoHallado != null) {
+
+			return ResponseEntity.ok(productoHallado);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+
+	}
+	
+	@PostMapping(value = "/chapinMarket/actualizar-inventario-producto", produces = "application/json")
+	public ResponseEntity<Boolean> actualizarStockProducto(@RequestBody Inventario request) {
+
+		
+		boolean seActualizo = inventario.actualizarInventarioProducto(request);
+
+		if (seActualizo) {
+			return ResponseEntity.ok(seActualizo);
 		} else {
 			return ResponseEntity.ok(false);
 		}

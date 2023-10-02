@@ -116,7 +116,7 @@ public class BodegaControlador {
 	@GetMapping(value = "/chapinMarket/obtener-producto", produces = "application/json")
 	public ResponseEntity<Producto> obtenerProductoPorId(@RequestParam String codigo) {
 
-		// se obtienen los productos en bodega de una sucursal
+		// se obtienen producto en bodega de una sucursal
 		Producto productoHallado = producto.obtenerProductoPorId(codigo);
 
 		if (productoHallado != null) {

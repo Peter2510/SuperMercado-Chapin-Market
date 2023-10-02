@@ -1,1 +1,47 @@
-<p>editar-inventario works!</p>
+<div class="grid-container">
+    <h1 class="mat-h1 text-center">Inventario</h1>
+  
+    <form class="form" (ngSubmit)="editarInventarioProducto()">
+      <h2 class="form__title">Actualizar producto en el inventario</h2>
+  
+      <div class="form__container">
+        
+        <div class="form__group__p">
+          <p #codigoProducto class="form__input" placeholder=" " readonly></p>
+          <label for="codigo" class="form__label">Codigo del producto</label>
+          <span class="form__line"></span>
+        </div>
+  
+        <div class="form__group__p">
+          <p #nombreProducto class="form__input" placeholder=" " readonly></p>
+          <label for="name" class="form__label">Nombre del producto</label>
+          <span class="form__line"></span>
+        </div>
+
+        <div class="form__group__p">
+            <p #cantidadProductoBodega class="form__input" placeholder=" " readonly></p>
+            <label for="cantidadBodega" class="form__label">Cantidad en bodega</label>
+            <span class="form__line"></span>
+          </div>          
+
+        <div class="form__group__p">
+            <p #cantidadProductoInventario class="form__input" placeholder=" " readonly></p>
+            <label for="cantidadInventario" class="form__label">Cantidad actual en inventario</label>
+            <span class="form__line"></span>
+          </div>
+
+        <div class="form__group">
+          <input class="form__input" name="cantidadModificar" id="cantidadModificar" placeholder=" " [(ngModel)]="cantidad" [ngModelOptions]="{standalone: true}">
+          <label for="cantidadModificar" class="form__label">Cantidad a retirar de bodega</label>
+          <span class="form__line"></span>
+          <div class="alert alert-warning mt-2" role="alert" *ngIf="cantidadNull">
+            Debes asignar una cantidad entera positiva para retirar de la bodega
+          </div>
+        </div>
+
+        <input type="submit" class="form__submit" name="login" value="Actualizar" />
+  
+      </div>
+    </form>
+  </div>
+  
