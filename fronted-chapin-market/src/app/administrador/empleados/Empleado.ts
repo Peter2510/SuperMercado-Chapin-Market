@@ -5,4 +5,5 @@ export class Empleado{
     codigo_sucursal:String;
     codigo_rol:Number;
     caja:Number;
+    usuario:String;
 }

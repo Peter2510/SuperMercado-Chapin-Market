@@ -43,7 +43,7 @@ public class EmpleadoControlador {
 	public ResponseEntity<Empleado> login(@RequestBody Credenciales credenciales) {
 
 		//se obtiene el codigo y contraseña y se valida 
-		Empleado empleado = empleados.verificarCredenciales(credenciales.getCodigo(), credenciales.getContrasenia());
+		Empleado empleado = empleados.verificarCredenciales(credenciales.getUsuario(), credenciales.getContrasenia());
 	
 		if(empleado!=null) {
 

@@ -11,6 +11,8 @@ import { LoginService } from 'src/app/login/login-service/login.service';
 })
 export class NavegacionComponentCajero {
 
+  opcion:Number = 1;
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -24,8 +26,18 @@ export class NavegacionComponentCajero {
     window.location.reload();
   }
 
-  public irInicio(){
-    window.location.reload();
+  public Validaropcion(opcionHallada: Number) {
+    switch (opcionHallada) {
+      case 1:
+        this.opcion = 1;
+        break;
+      case 2:
+        this.opcion = 2;
+        break;
+      case 3:
+        this.opcion = 3;
+        break;
+    }
   }
 
 }

@@ -52,6 +52,7 @@ import { ProductosDisponiblesAgregarComponent } from './sucursal/bodega/producto
 import { EditarStockComponent } from './sucursal/bodega/productos/editar-stock/editar-stock.component';
 import { EditarInventarioComponent } from './sucursal/inventario/productos/editar-inventario/editar-inventario.component';
 import { DisponiblesAgregarInventarioComponent } from './sucursal/inventario/productos/disponibles-agregar-inventario/disponibles-agregar-inventario.component';
+import { EditarClienteComponent } from './cajero/editar-cliente/editar-cliente/editar-cliente.component';
 
 
 const routes: Route[] = [
@@ -103,7 +104,8 @@ const routes: Route[] = [
     ProductosDisponiblesAgregarComponent,
     EditarStockComponent,
     EditarInventarioComponent,
-    DisponiblesAgregarInventarioComponent
+    DisponiblesAgregarInventarioComponent,
+    EditarClienteComponent
     
   ],
   imports: [

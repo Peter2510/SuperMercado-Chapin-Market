@@ -33,11 +33,12 @@ public class EmpleadoDAO {
 
 			connection = dataSource.getConnection();
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery("SELECT codigo,nombre,codigo_sucursal,rol,caja FROM empleados.empleado");
+			resultSet = statement.executeQuery("SELECT codigo,usuario,nombre,codigo_sucursal,rol,caja FROM empleados.empleado");
 
 			while (resultSet.next()) {
 				Empleado empleado = new Empleado();
 				empleado.setCodigo(resultSet.getInt("codigo"));
+				empleado.setUsuario(resultSet.getString("usuario"));
 				empleado.setNombre(resultSet.getString("nombre"));
 				empleado.setCodigo_sucursal(resultSet.getInt("codigo_sucursal"));
 				empleado.setCodigo_rol(resultSet.getInt("rol"));
@@ -59,25 +60,25 @@ public class EmpleadoDAO {
 	}
 	
 	
-	public Empleado verificarCredenciales(String code, String contrasenia) {
+	public Empleado verificarCredenciales(String user, String contrasenia) {
 		
-		int codigo = Integer.parseInt(code);
 		Connection connection;
 		ResultSet resultSet;
 
 		try {
 			
 			Empleado empleado = new Empleado();
-			String query = "SELECT codigo,nombre,codigo_sucursal,rol,caja FROM empleados.empleado WHERE codigo = ? AND contrasenia =?";
+			String query = "SELECT codigo,usuario,nombre,codigo_sucursal,rol,caja FROM empleados.empleado WHERE usuario = ? AND contrasenia =?";
 			connection = dataSource.getConnection();		
 			PreparedStatement preST = connection.prepareStatement(query);
-			preST.setInt(1,codigo);
+			preST.setString(1,user);
 			preST.setString(2,contrasenia);
 			resultSet = preST.executeQuery();
 			
 			while (resultSet.next()) {
 				empleado.setCodigo(resultSet.getInt("codigo"));
 				empleado.setNombre(resultSet.getString("nombre"));
+				empleado.setUsuario(resultSet.getString("usuario"));
 				empleado.setCodigo_sucursal(resultSet.getInt("codigo_sucursal"));
 				empleado.setCodigo_rol(resultSet.getInt("rol"));
 				empleado.setCaja(resultSet.getInt("caja"));
@@ -96,7 +97,7 @@ public class EmpleadoDAO {
 		
 	}
 	
-/*	public UserDetails getEmpleadoById(String code) {
+/*	public Empleado getEmpleadoById(String code) {
 		
 		int codigo = Integer.parseInt(code);
 		Connection connection;

@@ -3,6 +3,7 @@ package com.peter.chapin_market.modelo;
 public class Empleado{
 
 	private int codigo;
+	private String usuario;
 	private String nombre;
 	private int codigo_rol;
 	private int codigo_sucursal;
@@ -13,6 +14,15 @@ public class Empleado{
 
 	}
 	
+	
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
 	public int getCaja() {
 		return caja;
 	}

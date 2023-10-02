@@ -7,10 +7,10 @@
 
           <form (ngSubmit)="login()">
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="floatingInput" placeholder="Código" [(ngModel)]="loginData.codigo" [ngModelOptions]="{standalone: true}">
-              <label for="floatingInput">Código</label>
+              <input type="text" class="form-control" id="floatingInput" placeholder="Código" [(ngModel)]="loginData.usuario" [ngModelOptions]="{standalone: true}">
+              <label for="floatingInput">Usuario</label>
               <div class="alert alert-warning mt-2" role="alert" *ngIf="codigoNull">
-                Debes ingresar el código de empleado
+                Debes ingresar el usuario de empleado
               </div>
             </div>
             <div class="form-floating mb-3">

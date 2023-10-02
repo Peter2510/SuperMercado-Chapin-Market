@@ -5,6 +5,7 @@
       <tr>
         <th></th>
         <th>Codigo</th>
+        <th>Usuario</th>
         <th>Nombre</th>
         <th>Rol</th>
         <th>Sucursal</th>
@@ -15,6 +16,7 @@
         <tr *ngFor="let empleado of empleados; let i = index">
             <td>{{ i + 1 }}</td> 
             <td>{{empleado.codigo}}</td>
+            <td>{{empleado.usuario}}</td>
             <td>{{empleado.nombre}}</td>
             <td *ngIf="empleado.codigo_rol==1">Cajero</td>
             <td *ngIf="empleado.codigo_rol==2">Bodega</td>

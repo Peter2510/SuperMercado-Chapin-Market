@@ -10,7 +10,7 @@ import swal from 'sweetalert2';
 })
 export class LoginComponent {
   loginData = {
-    codigo: '',
+    usuario: '',
     contrasenia: '',
   };
 
@@ -75,7 +75,7 @@ export class LoginComponent {
   }
 
   validarCredenciales() {
-    if (this.loginData.codigo == '') {
+    if (this.loginData.usuario == '') {
       this.codigoNull = true;
     } else {
       this.codigoNull = false;
