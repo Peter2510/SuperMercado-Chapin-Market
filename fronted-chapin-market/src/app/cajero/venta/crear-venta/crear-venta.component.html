@@ -1,11 +1,63 @@
-<div class="grid-container">    
+<div class="grid-container">
+  <p>{{ cliente.nit }}</p>
+  <p>{{ cliente.nombre }}</p>
 
-<p *ngIf="nit!=null;else CF">{{nit}}</p>    
+  <form class="form" (ngSubmit)="agregarProducto()">
+
+    <h2 class="form__title">Productos disponibles para la venta</h2>
+
+    <div class="form__container">
+
+    <div class="form__group">
+      <p class=" text-start mt-5" >Productos disponibles</p>
+      <select class="form-select  mb-5" aria-label="Default select example" [(ngModel)]="codigo" [ngModelOptions]="{standalone: true}">
+        <option value="0" disabled selected>Seleciona un producto</option>
+        <option *ngFor="let producto of productos" [value]="producto.codigo">{{producto.codigo}} - {{ producto.nombre }}</option>
+      </select>
+      <div class="alert alert-warning mt-2" role="alert" *ngIf="codigoNull">
+        Debes selecionar un producto
+      </div>
+    </div>
+
+    <div class="form__group">
+       <input type="number" name="cantidad" id="cantidad" class="form__input" placeholder=" " required min="1" [(ngModel)]="cantidad" [ngModelOptions]="{standalone: true}">
+       <label for="cantidad" class="form__label">Cantidad a vender</label>
+       <span class="form__line"></span>
+       <div class="alert alert-warning mt-2" role="alert" *ngIf="cantidadNull==true">
+             Debes asignar una cantidad entera y mayor a cero para el producto a vender
+       </div>
+    </div>
+
+    <input type="submit" class="form__submit" name="login" value="Agregar">
+    
+  </div>
+  
+  </form>
+
+  <div class="container">
+
+    <table class="table table-striped table-bordered">
+      <thead class="table table-dark">
+        <tr>
+          <th class="text-center" ></th>
+          <th class="text-center" >Codigo del producto</th>
+          <th class="text-center" >Cantidad del producto</th>
+
+        </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let producto of productosAgregados; let i = index">
+              <td>{{ i + 1 }}</td> 
+              <td class="text-center" >{{producto.codigo}}</td>
+              <td class="text-center" >{{producto.cantidad}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="form__submit" (click)="finalizarVenta()" >Finalizar Venta</button>
 
 
-<ng-template #CF>
-    <p>CF</p>
-  </ng-template>
 
 
 </div>

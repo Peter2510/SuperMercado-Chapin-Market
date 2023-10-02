@@ -6,15 +6,11 @@ public class Venta {
 
 	private int codigo;
 	private int codigo_cajero;
-	private int nit_cliente;
+	private String nit_cliente;
 	private double total_venta;
 	private LocalDate fecha_venta;
 	private int codigo_sucursal;
 	
-	public Venta() {
-
-	}
-
 	public int getCodigo() {
 		return codigo;
 	}
@@ -31,11 +27,11 @@ public class Venta {
 		this.codigo_cajero = codigo_cajero;
 	}
 	
-	public int getNit_cliente() {
+	public String getNit_cliente() {
 		return nit_cliente;
 	}
 	
-	public void setNit_cliente(int nit_cliente) {
+	public void setNit_cliente(String nit_cliente) {
 		this.nit_cliente = nit_cliente;
 	}
 	
@@ -62,6 +58,12 @@ public class Venta {
 	public void setCodigo_sucursal(int codigo_sucursal) {
 		this.codigo_sucursal = codigo_sucursal;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Venta [codigo=" + codigo + ", codigo_cajero=" + codigo_cajero + ", nit_cliente=" + nit_cliente
+				+ ", total_venta=" + total_venta + ", fecha_venta=" + fecha_venta + ", codigo_sucursal="
+				+ codigo_sucursal + "]";
+	}
 	
 }
